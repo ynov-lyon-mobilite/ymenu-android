@@ -2,8 +2,10 @@ package com.ynovlyon.ymenu
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +35,7 @@ fun BottomNavigationBar(
                 alwaysShowLabel = true,
                 selectedContentColor = Color.Black,
                 unselectedContentColor = Color.Gray,
+                modifier = Modifier.background(color = Color.White),
                 selected = currentRoute?.hierarchy?.any {
                     navItem.route == it.route
                 } == true,

@@ -5,13 +5,13 @@ sealed class BottomNavItems(
     val name: String,
     val icon: Int
 ) {
-    object View1 : BottomNavItems("contacts", "Contacts", android.R.drawable.ic_menu_save)
-    object View2 : BottomNavItems("recent", "Recent", android.R.drawable.ic_menu_save)
-    object View3 : BottomNavItems("account", "Favorites", android.R.drawable.ic_menu_save)
+    object Menu : BottomNavItems("menu", "", R.drawable.ic_menu_restau)
+    object QrCode : BottomNavItems("qrCode", "", R.drawable.ic_qrcode)
+    object Account : BottomNavItems("account", "", R.drawable.ic_account)
 }
 
 val navItems = listOf(
-    BottomNavItems.View1,
-    BottomNavItems.View2,
-    BottomNavItems.View3
+    BottomNavItems.Menu,
+    BottomNavItems.QrCode,
+    BottomNavItems.Account
 )

@@ -3,4 +3,7 @@
     <string name="title_activity_navigation_view">NavigationView</string>
     <string name="title_activity_nav_host">NavHost</string>
     <string name="title_activity_bottom_navigation">BottomNavigation</string>
+    <string name="title_activity_menu">Menu</string>
+    <string name="title_activity_qr_code">QrCode</string>
+    <string name="title_activity_account">Account</string>
 </resources>
