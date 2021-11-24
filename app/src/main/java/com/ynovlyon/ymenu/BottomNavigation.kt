@@ -19,9 +19,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.ynovlyon.ymenu.ui.theme.YMenuTheme
-import com.ynovlyon.ymenu.ui.theme.YmenuOrange
-import com.ynovlyon.ymenu.ui.theme.YmenuRed
 
 @Composable
 fun BottomNavigationBar(

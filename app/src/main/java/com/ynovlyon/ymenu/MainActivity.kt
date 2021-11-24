@@ -1,4 +1,4 @@
-package com.ynovlyon.ymenu.presentation
+package com.ynovlyon.ymenu
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,6 +10,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.ynovlyon.ymenu.BottomNavigationView
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 
 @ExperimentalAnimationApi
