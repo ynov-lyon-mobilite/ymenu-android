@@ -1,4 +1,4 @@
-package com.ynovlyon.ymenu.ui.theme
+package com.ynovlyon.ymenu.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
