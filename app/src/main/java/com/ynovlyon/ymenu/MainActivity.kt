@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.FloatRange
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -43,13 +42,13 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.ynovlyon.ymenu.ui.theme.*
 import kotlinx.coroutines.launch
-@ExperimentalPagerApi
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
+import com.ynovlyon.ymenu.presentation.theme.fonts
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
@@ -245,6 +244,9 @@ fun IndicateIcon(isSelected: Boolean) {
                 }
             )
     )
+}
+
+@Composable
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
