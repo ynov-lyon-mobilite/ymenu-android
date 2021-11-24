@@ -26,7 +26,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.ynovlyon.ymenu.ui.theme.YMenuTheme
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -35,7 +34,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 
 @ExperimentalAnimationApi
@@ -44,87 +42,88 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-           //DetailsPlats()
-           YMenuTheme {
+            //DetailsPlats()
+            YMenuTheme {
                 // A surface container using the 'background' color from the theme
                 //MyApp()
-            YMenuTheme {
-                BottomNavigationView()
+                YMenuTheme {
+                    BottomNavigationView()
+                }
             }
         }
     }
-}
-@Preview(showBackground = true)
-@Composable
-fun DetailsPlats(names: List<String> = listOf("Emince de boeuf","Nouilles de riz","Nem","salade","carotte")){
 
-    Column(){
-        Text(
-            text = "Détails du plat", style =
+    @Preview(showBackground = true)
+    @Composable
+    fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de riz", "Nem", "salade", "carotte")) {
+
+        Column() {
+            Text(
+                    text = "Détails du plat", style =
             TextStyle(
-                fontSize = 50.sp,
-                fontWeight = FontWeight.Bold
+                    fontSize = 50.sp,
+                    fontWeight = FontWeight.Bold
             )
-        )
-    }
+            )
+        }
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.Center,
+                modifier = Modifier
+                        .fillMaxSize()
+                        .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
 
-        ) {
+                ) {
 
 
             val painter = painterResource(id = R.drawable.boeuf)
             val description = "Bo bun boeuf avec nems"
             val title = "Bo bun boeuf avec nems          13.90$"
             ImageCard(
-                painter = painter,
-                contentDescription = description,
-                title = title
+                    painter = painter,
+                    contentDescription = description,
+                    title = title
             )
             Text(
-                text = "Ingrédients", style =
-                TextStyle(
+                    text = "Ingrédients", style =
+            TextStyle(
                     fontSize = 35.sp,
                     fontWeight = FontWeight.Bold
-                )
+            )
             )
 
 
             for (name in names) {
-                LazyColumn(modifier =Modifier){
-                    items(items = names){
+                LazyColumn(modifier = Modifier) {
+                    items(items = names) {
                         Divider()
                     }
                 }
                 Text(
-                    text = name,
-                    style = TextStyle(fontSize = 20.sp),
-                    modifier = Modifier.padding(3.dp),
+                        text = name,
+                        style = TextStyle(fontSize = 20.sp),
+                        modifier = Modifier.padding(3.dp),
 
-                )
+                        )
             }
 
-                Column( modifier = Modifier
+            Column(modifier = Modifier
                     .padding(10.dp)
                     .align(Alignment.CenterHorizontally)
 
 
-                    ) {
-                    Button(
+            ) {
+                Button(
                         onClick = {},
                         shape = RoundedCornerShape(20.dp)
-                    ) {
-                        //icon cube 3D pas trouver
+                ) {
+                    //icon cube 3D pas trouver
 //                    Icon(
 //                        imageVector = Icons.Filled.Search,
 //                        contentDescription = "Voir en RA",
 //                        Modifier.padding(end = 8.dp)
 //                    )
-                        Text(text = "Voir en RA",fontSize = 18.sp)
-                    }
+                    Text(text = "Voir en RA", fontSize = 18.sp)
+                }
 
             }
 
@@ -132,60 +131,56 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf","Nouilles de riz
         }
 
 
+    }
 
-}
-
-@Composable
-fun ImageCard(
-    painter: Painter,
-    contentDescription: String,
-    title: String,
-    modifier: Modifier = Modifier
-    ){
-    Card(modifier = modifier
-        .fillMaxWidth()
-        .padding(4.dp),
-        shape = RoundedCornerShape(25.dp),
-        elevation = 5.dp
+    @Composable
+    fun ImageCard(
+            painter: Painter,
+            contentDescription: String,
+            title: String,
+            modifier: Modifier = Modifier
     ) {
-        Box(modifier = Modifier.height(290.dp)){
-            Image(
-                painter = painter,
-                contentDescription = contentDescription,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.size(390.dp)
-            )
-            Box(modifier = Modifier
-                .fillMaxSize()
-                //effet
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black
-                        ),
-                        startY = 300f
-                    )
+        Card(modifier = modifier
+                .fillMaxWidth()
+                .padding(4.dp),
+                shape = RoundedCornerShape(25.dp),
+                elevation = 5.dp
+        ) {
+            Box(modifier = Modifier.height(290.dp)) {
+                Image(
+                        painter = painter,
+                        contentDescription = contentDescription,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.size(390.dp)
                 )
+                Box(modifier = Modifier
+                        .fillMaxSize()
+                        //effet
+                        .background(
+                                Brush.verticalGradient(
+                                        colors = listOf(
+                                                Color.Transparent,
+                                                Color.Black
+                                        ),
+                                        startY = 300f
+                                )
+                        )
 
-            )
-            //texte sur le card
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .padding(19.dp),
-                contentAlignment = Alignment.BottomStart)
-            {
-               Text(title,
-                   style = TextStyle(color = Color.White,
-                       fontSize = 18.sp,
-                       fontWeight = FontWeight.Bold,
-                       textAlign = TextAlign.Center
-                   ))
+                )
+                //texte sur le card
+                Box(modifier = Modifier
+                        .fillMaxSize()
+                        .padding(19.dp),
+                        contentAlignment = Alignment.BottomStart)
+                {
+                    Text(title,
+                            style = TextStyle(color = Color.White,
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center
+                            ))
+                }
             }
         }
     }
-}
-
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
 }
