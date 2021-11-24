@@ -1,4 +1,6 @@
-package com.ynovlyon.ymenu
+package com.ynovlyon.ymenu.presentation.navbar
+
+import com.ynovlyon.ymenu.R
 
 sealed class BottomNavItems(
     val route: String,
