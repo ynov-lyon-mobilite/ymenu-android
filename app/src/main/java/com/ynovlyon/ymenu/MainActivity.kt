@@ -32,18 +32,24 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 
-
+@ExperimentalAnimationApi
+@ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
-            DetailsPlats()
-
+           //DetailsPlats()
            YMenuTheme {
                 // A surface container using the 'background' color from the theme
                 //MyApp()
+            YMenuTheme {
+                BottomNavigationView()
             }
         }
     }
@@ -180,5 +186,6 @@ fun ImageCard(
     }
 }
 
-
-
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
