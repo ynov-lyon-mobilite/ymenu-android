@@ -1,6 +1,5 @@
 package com.ynovlyon.ymenu
 
-import android.text.Layout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -11,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -30,27 +28,32 @@ fun DishListItem(dish: Dish) {
 //        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
     ) {
-        Row {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             DishImage(dish = dish)
             Column(
                 modifier = Modifier
                     .padding(20.dp)
-                    .fillMaxWidth()
-                    .align(Alignment.CenterVertically)
+                    .width(100.dp),
             ) {
-                Text(text = dish.title, fontWeight = FontWeight.Bold)
-                Text(text = "View Detail", fontStyle = FontStyle.Italic)
+                Text(text = dish.name, fontWeight = FontWeight.Bold)
+                Text(
+                    text = "View Detail",
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(top = 5.dp)
+                )
             }
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.CenterVertically)
+                    .padding(20.dp),
             ) {
-                Text(text = dish.price)
+                Text(text = dish.price, fontWeight = FontWeight.Bold)
             }
         }
     }
 }
+
 
 @Composable
 fun DishImage(dish: Dish) {

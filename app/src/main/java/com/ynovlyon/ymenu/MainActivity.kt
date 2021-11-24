@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
+@Preview(name= "DIshes List")
 @Composable
 fun MyApp() {
     Scaffold(
