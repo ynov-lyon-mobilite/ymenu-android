@@ -11,6 +11,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.ynovlyon.ymenu.camera.Camera
 import com.ynovlyon.ymenu.camera.CameraPreview
+import androidx.compose.runtime.Composable
 
 @Composable
 fun Greeting(name: String) {
