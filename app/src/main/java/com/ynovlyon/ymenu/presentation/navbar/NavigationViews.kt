@@ -1,6 +1,7 @@
 package com.ynovlyon.ymenu
 
 import androidx.compose.runtime.Composable
+import com.ynovlyon.ymenu.presentation.onboarding.Greeting
 
 @Composable
 fun Menu() {

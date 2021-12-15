@@ -1,4 +1,4 @@
-package com.ynovlyon.ymenu
+package com.ynovlyon.ymenu.presentation.onboarding
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
