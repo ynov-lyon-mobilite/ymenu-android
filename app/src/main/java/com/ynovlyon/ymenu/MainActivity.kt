@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 
-
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {

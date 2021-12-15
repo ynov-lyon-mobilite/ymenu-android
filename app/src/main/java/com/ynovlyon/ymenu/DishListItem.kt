@@ -58,7 +58,7 @@ fun DishListItem(dish: Dish) {
 @Composable
 fun DishImage(dish: Dish) {
     Image(
-        painter = painterResource(id = dish.dishesPictId),
+        painter = painterResource(id = dish.url_image),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
