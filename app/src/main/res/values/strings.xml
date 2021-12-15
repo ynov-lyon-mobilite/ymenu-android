@@ -1,11 +1,5 @@
 <resources>
     <string name="app_name">Y\'Menu</string>
-    <string name="onBoardingTitle1">Bienvenue dans YMenu</string>
-    <string name="onBoardingTitle2">Comment ca marche ?</string>
-    <string name="onBoardingTitle3">Bon appétit !</string>
-    <string name="onBoardingText1">A travers cette appli</string>
-    <string name="onBoardingText2">Ouvrez le scanner</string>
-    <string name="onBoardingText3">Si vous avez compris</string>
     <string name="title_activity_navigation_view">NavigationView</string>
     <string name="title_activity_nav_host">NavHost</string>
     <string name="title_activity_bottom_navigation">BottomNavigation</string>
