@@ -1,12 +1,17 @@
 package com.ynovlyon.ymenu
 
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
+@ExperimentalPermissionsApi
 @ExperimentalFoundationApi
 @Composable
 fun NavigationHost(

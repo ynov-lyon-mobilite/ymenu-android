@@ -1,15 +1,27 @@
 package com.ynovlyon.ymenu
 
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.ynovlyon.ymenu.camera.Camera
+
+@Composable
+fun Greeting(name: String) {
+    Text(text = "Hello $name!")
+}
 
 @Composable
 fun Menu() {
     Greeting("menu")
 }
-
+@ExperimentalPermissionsApi
 @Composable
 fun QrCode(){
-    Greeting("qrcode")
+    Camera()
+}
+
+@Composable
+fun iui(){
 }
 
 @Composable
