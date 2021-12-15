@@ -2,6 +2,7 @@ package com.ynovlyon.ymenu
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import com.ynovlyon.ymenu.presentation.onboarding.Greeting
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 
@@ -9,10 +10,9 @@ import com.ynovlyon.ymenu.camera.Camera
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
-
 @Composable
 fun Menu() {
-    Greeting("menu")
+    DetailsPlats()
 }
 @ExperimentalPermissionsApi
 @Composable
