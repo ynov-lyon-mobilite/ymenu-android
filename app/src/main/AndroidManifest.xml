@@ -3,17 +3,6 @@
     package="com.ynovlyon.ymenu">
     <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.CAMERA" />
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.ynovlyon.ymenu"
-    tools:ignore="MissingLeanbackLauncher">
-
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -27,12 +16,12 @@
             android:label="@string/title_activity_bottom_navigation"
             android:theme="@style/Theme.YMenu.NoActionBar" />
         <activity
-            android:name=".presentation.navbar.NavHost"
+            android:name=".NavHost"
             android:exported="false"
             android:label="@string/title_activity_nav_host"
             android:theme="@style/Theme.YMenu.NoActionBar" />
         <activity
-            android:name=".presentation.navbar.NavigationViews"
+            android:name=".NavigationView"
             android:exported="false"
             android:label="@string/title_activity_navigation_view"
             android:theme="@style/Theme.YMenu.NoActionBar" />
