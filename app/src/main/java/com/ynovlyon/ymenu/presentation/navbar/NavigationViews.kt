@@ -6,7 +6,6 @@ import com.ynovlyon.ymenu.presentation.onboarding.Greeting
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 
-
 @Composable
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
