@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ynovlyon.ymenu">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ynovlyon.ymenu"
+    tools:ignore="MissingLeanbackLauncher">
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -15,12 +24,12 @@
             android:label="@string/title_activity_bottom_navigation"
             android:theme="@style/Theme.YMenu.NoActionBar" />
         <activity
-            android:name=".NavHost"
+            android:name=".presentation.navbar.NavHost"
             android:exported="false"
             android:label="@string/title_activity_nav_host"
             android:theme="@style/Theme.YMenu.NoActionBar" />
         <activity
-            android:name=".NavigationView"
+            android:name=".presentation.navbar.NavigationViews"
             android:exported="false"
             android:label="@string/title_activity_navigation_view"
             android:theme="@style/Theme.YMenu.NoActionBar" />

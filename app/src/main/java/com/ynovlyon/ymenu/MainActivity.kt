@@ -1,10 +1,10 @@
 package com.ynovlyon.ymenu
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.annotation.FloatRange
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -14,31 +14,20 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.SnackbarDefaults.backgroundColor
-import androidx.compose.material.rememberBottomSheetScaffoldState
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.ynovlyon.ymenu.ui.theme.*
 import kotlinx.coroutines.launch
@@ -48,6 +37,11 @@ import androidx.compose.material.Text
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import com.ynovlyon.ymenu.presentation.theme.fonts
 
+import androidx.compose.runtime.*
+import androidx.loader.content.Loader
+import dev.burnoo.compose.rememberpreference.rememberBooleanPreference
+
+
 @ExperimentalPagerApi
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
@@ -55,19 +49,46 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white)
+
+        // SharedPreferences preferences = getSharedPreferences('PREFERENCE', MODE_PRIVATE);
+
 
         setContent {
             YMenuTheme {
-                BottomNavigationView()
+
+                setContent {
+
+                    var isOnboardingCompleted by rememberBooleanPreference(
+                        keyName = "onboardingKey", // preference is stored using this key
+                        initialValue = null, // returned before preference is loaded
+                        defaultValue = false, // returned when preference is not set yet
+                    )
+                    when (isOnboardingCompleted) {
+                        null -> null
+                        false -> OnBoardScreen(onCompleted = { isOnboardingCompleted = true })
+                        true -> BottomNavigationView()
+                    }
+                    //OnBoardScreen { isOnboardingCompleted = true }
+
+                    // Get the shared preferences
+                    // val preferences = getSharedPreferences("my_preferences", MODE_PRIVATE)
+
+                    //if (!preferences.getBoolean("onboarding_complete", false)) {
+                      //  OnBoardScreen { isOnboardingCompleted = true }
+
+                    //}
+                }
+
             }
         }
     }
 }
 
+@SuppressLint("CoroutineCreationDuringComposition")
 @ExperimentalPagerApi
 @Composable
-fun OnBoardScreen() {
+fun OnBoardScreen(onCompleted: () -> Unit) {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val onBoardViewModel : OnBoardViewModel = viewModel()
@@ -125,7 +146,7 @@ fun OnBoardScreen() {
                                 modifier = Modifier
                                     .padding(top = 50.dp),
                                 textAlign = TextAlign.Center,
-                                color = ColorTitle,
+                                color = Orange200,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 40.sp
                             )
@@ -141,8 +162,9 @@ fun OnBoardScreen() {
 
                             if (pagerState.currentPage != 2) {
                                 OutlinedButton (
-                                    onClick = {},
-                                    border = BorderStroke(2.dp, Color.Black),
+                                    onClick = {
+                                        onBoardViewModel.setCurrentPage(pagerState.currentPage + 1)
+                                    },
                                     colors = ButtonDefaults.buttonColors(
                                         backgroundColor = Orange200,
                                         contentColor = Color.White),
@@ -151,22 +173,17 @@ fun OnBoardScreen() {
                                     Text(
                                         text = "Suivant",
                                         fontFamily = fonts,
-                                        color = Color.Black,
+                                        color = Color.White,
                                         modifier = Modifier
                                             .padding(
                                                 vertical = 8.dp,
                                                 horizontal = 40.dp
                                             )
-                                            .clickable {
-                                                onBoardViewModel.setCurrentPage(pagerState.currentPage + 1)
-                                            }
                                     )
                                 }
                             } else {
                                 OutlinedButton(
-                                    onClick = {
-                                    },
-                                    border = BorderStroke(2.dp, Color.Black),
+                                    onClick = onCompleted,
                                     colors = ButtonDefaults.buttonColors(
                                         backgroundColor = Orange200,
                                         contentColor = Color.White),
@@ -180,7 +197,7 @@ fun OnBoardScreen() {
                                                 vertical = 8.dp,
                                                 horizontal = 40.dp
                                             ),
-                                        color = Color.Black
+                                        color = Color.White
                                     )
                                 }
                             }
@@ -238,7 +255,7 @@ fun IndicateIcon(isSelected: Boolean) {
             .clip(CircleShape)
             .background(
                 if (isSelected) {
-                    Color.Black
+                    Orange200
                 } else {
                     Color.Gray.copy(alpha = 0.5f)
                 }
