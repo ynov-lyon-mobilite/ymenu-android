@@ -4,6 +4,8 @@ import android.graphics.Paint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -25,8 +27,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.ynovlyon.ymenu.ui.theme.YMenuTheme
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
+
 
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
@@ -34,13 +42,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //DetailsPlats()
             YMenuTheme {
-                // A surface container using the 'background' color from the theme
-                //MyApp()
-                YMenuTheme {
-                    BottomNavigationView()
-                }
+                BottomNavigationView()
             }
         }
     }
