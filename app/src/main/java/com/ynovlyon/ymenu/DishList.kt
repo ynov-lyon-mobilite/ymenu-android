@@ -10,7 +10,7 @@ import com.ynovlyon.ymenu.DishListItem
 import com.ynovlyon.ymenu.data.DataProvider
 
 @Composable
-fun YmenuHome() {
+fun DishList() {
     val dishes = remember { DataProvider.dishesList }
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),

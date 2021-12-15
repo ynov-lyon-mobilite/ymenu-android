@@ -1,18 +1,19 @@
 package com.ynovlyon.ymenu
 
 import androidx.compose.runtime.Composable
+import com.ynovlyon.ymenu.data.Dish
+import com.ynovlyon.ymenu.ui.theme.DishList
 
 @Composable
 fun Menu() {
-    Greeting("menu")
+    DishList()
 }
 
 @Composable
 fun QrCode(){
-    Greeting("qrcode")
 }
 
 @Composable
 fun Account(){
-    Greeting("account")
 }
+

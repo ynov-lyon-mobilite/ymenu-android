@@ -11,7 +11,6 @@ private val DarkColorPalette = darkColors(
     primary = YmenuOrange,
     primaryVariant = YmenuOrange,
     secondary = YmenuRed,
-    surface = graySurface,
 )
 
 private val LightColorPalette = lightColors(
