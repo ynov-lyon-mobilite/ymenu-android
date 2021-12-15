@@ -37,6 +37,7 @@ import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import com.ynovlyon.ymenu.presentation.theme.fonts
 
 import androidx.compose.runtime.*
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.onboarding.OnBoardScreen
 import com.ynovlyon.ymenu.presentation.onboarding.OnBoardViewModel
 import dev.burnoo.compose.rememberpreference.rememberBooleanPreference
@@ -46,6 +47,7 @@ import dev.burnoo.compose.rememberpreference.rememberBooleanPreference
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 class MainActivity : ComponentActivity() {
+    @ExperimentalPermissionsApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

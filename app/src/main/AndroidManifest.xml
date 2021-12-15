@@ -10,8 +10,10 @@
     <uses-feature
         android:name="android.hardware.touchscreen"
         android:required="false" />
-    package="com.ynovlyon.ymenu">
-    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
     <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"

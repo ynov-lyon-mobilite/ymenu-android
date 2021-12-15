@@ -12,7 +12,7 @@ fun Greeting(name: String) {
 }
 @Composable
 fun Menu() {
-    Greeting("menu")
+    DetailsPlats()
 }
 @ExperimentalPermissionsApi
 @Composable
