@@ -40,8 +40,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
     val onBoardViewModel: OnBoardViewModel = viewModel()
     val context = LocalContext.current
     val currentPage = onBoardViewModel.currentPage.collectAsState()
-
-    Toast.makeText(context, "${currentPage.value}", Toast.LENGTH_SHORT).show()
+    val currentPageValue = currentPage.value
 
     val pagerState = rememberPagerState(
         pageCount = onBoardItem.size,
@@ -59,7 +58,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
         ) {
             scope.launch {
                 pagerState.animateScrollToPage(
-                    page = currentPage.value
+                    page = currentPageValue
                 )
             }
 
