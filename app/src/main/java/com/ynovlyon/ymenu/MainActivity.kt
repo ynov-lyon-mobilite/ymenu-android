@@ -39,9 +39,6 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.ynovlyon.ymenu.ui.theme.*
 import kotlinx.coroutines.launch
-import androidx.compose.runtime.Composable
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import com.ynovlyon.ymenu.presentation.theme.fonts
