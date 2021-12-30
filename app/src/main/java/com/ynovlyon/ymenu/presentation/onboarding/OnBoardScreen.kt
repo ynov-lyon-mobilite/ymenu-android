@@ -26,7 +26,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.ynovlyon.ymenu.onBoardItem
 import com.ynovlyon.ymenu.presentation.theme.fonts
 import com.ynovlyon.ymenu.ui.theme.Orange200
 import kotlinx.coroutines.launch

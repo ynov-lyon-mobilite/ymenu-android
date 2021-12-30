@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,14 +14,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
@@ -29,13 +39,9 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.ynovlyon.ymenu.ui.theme.*
 import kotlinx.coroutines.launch
-import androidx.compose.runtime.Composable
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import com.ynovlyon.ymenu.presentation.theme.fonts
-
 import androidx.compose.runtime.*
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.onboarding.OnBoardScreen
@@ -57,9 +63,8 @@ class MainActivity : ComponentActivity() {
 
 
         setContent {
-            //DetailsPlats()
             YMenuTheme {
-
+                BottomNavigationView()
                 setContent {
 
                     var isOnboardingCompleted by rememberBooleanPreference(
