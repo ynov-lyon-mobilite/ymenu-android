@@ -4,7 +4,9 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
+@ExperimentalPermissionsApi
 @ExperimentalFoundationApi
 @Composable
 fun BottomNavigationView() {
