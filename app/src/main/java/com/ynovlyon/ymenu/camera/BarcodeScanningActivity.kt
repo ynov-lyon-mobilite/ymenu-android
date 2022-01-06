@@ -40,8 +40,6 @@ class QrCodeAnalyzer(
             // Update scale factors
             scaleX = 500 / img.height.toFloat()
             scaleY = 500 / img.width.toFloat()
-            println("SCAAALE" + scaleX)
-            println("SCAAALE" + scaleY)
 
             val inputImage = InputImage.fromMediaImage(img, image.imageInfo.rotationDegrees)
 
@@ -56,12 +54,12 @@ class QrCodeAnalyzer(
                     if (barcodes.isNotEmpty()) {
                         for (barcode in barcodes) {
                             // Handle received barcodes...
-                            Toast.makeText(
-                                context,
-                                "Value: " + barcode.rawValue,
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                            val qrCodeResult = barcode.rawValue
+                            if (qrCodeResult !== null) {
+                                val restaurantId = barcode.rawValue.trim(',')
+                                val restaurantName = barcode.rawValue.trim(',')
+                            }
+                            println("OUI : $qrCodeResult")
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
                                 qrCodeBoxView.setRect(

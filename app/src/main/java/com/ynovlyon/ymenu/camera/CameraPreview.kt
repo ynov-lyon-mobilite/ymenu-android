@@ -40,7 +40,6 @@ fun QrCodePreview(image: InputImage) {
 
                 val rawValue = barcode.rawValue
 
-                println("oui")
                 val valueType = barcode.valueType
                 when (valueType) {
                     Barcode.TYPE_URL -> {
