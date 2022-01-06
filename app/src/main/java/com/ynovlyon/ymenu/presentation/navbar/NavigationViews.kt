@@ -2,6 +2,9 @@ package com.ynovlyon.ymenu
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.ynovlyon.ymenu.data.Dish
 import com.ynovlyon.ymenu.presentation.onboarding.Greeting
@@ -16,9 +19,16 @@ fun Greeting(name: String) {
 @ExperimentalPagerApi
 @Composable
 fun Menu() {
-    DishList()
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "menu") {
+        composable(route = "menu") {
+            DishList(navController = navController)
+        }
+        composable(route = "details") {
+            DetailsPlats(navController = navController)
+        }
+    }
 }
-
 @ExperimentalPermissionsApi
 @Composable
 fun QrCode(){
