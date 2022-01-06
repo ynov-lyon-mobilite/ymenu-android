@@ -58,15 +58,17 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
         Text(
             text = "Détails du plat", style =
             TextStyle(
-                fontSize = 50.sp,
+                fontSize = 40.sp,
                 fontWeight = FontWeight.Bold
-            )
+            ),
+            modifier = Modifier
+                .padding(18.dp)
         )
     }
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(10.dp),
         verticalArrangement = Arrangement.Center,
 
         ) {
@@ -74,7 +76,7 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
 
         val painter = painterResource(id = R.drawable.boeuf)
         val description = "Bo bun boeuf avec nems"
-        val title = "Bo bun boeuf avec nems          13.90$"
+        val title = "Bo bun boeuf avec nems                13.90€"
         ImageCard(
             painter = painter,
             contentDescription = description,
@@ -83,24 +85,30 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
         Text(
             text = "Ingrédients", style =
             TextStyle(
-                fontSize = 35.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
-            )
+            ),
+            modifier = Modifier
+                .padding(10.dp)
         )
-
 
         for (name in names) {
             LazyColumn(modifier = Modifier) {
                 items(items = names) {
-                    Divider()
+                    Divider(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .height(0.2.dp)
+                    )
+
                 }
             }
             Text(
                 text = name,
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(3.dp),
-
-                )
+                style = TextStyle(fontSize = 15.sp),
+                modifier = Modifier
+                    .padding(7.dp)
+            )
         }
 
         Column(modifier = Modifier
@@ -110,6 +118,7 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
 
         ) {
             Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
                 onClick = {},
                 shape = RoundedCornerShape(20.dp)
             ) {
@@ -119,7 +128,7 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                 //                        contentDescription = "Voir en RA",
                 //                        Modifier.padding(end = 8.dp)
                 //                    )
-                Text(text = "Voir en RA", fontSize = 18.sp)
+                Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
             }
 
         }
