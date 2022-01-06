@@ -12,6 +12,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 import com.ynovlyon.ymenu.presentation.navbar.navItems
+import com.ynovlyon.ymenu.presentation.theme.YmenuOrange
+import com.ynovlyon.ymenu.presentation.theme.YmenuOrangeAlt
+import com.ynovlyon.ymenu.ui.theme.Orange200
 
 @Composable
 fun BottomNavigationBar(
@@ -30,9 +33,10 @@ fun BottomNavigationBar(
                     navItem.route == it.route
                 } == true,
                 modifier = Modifier.background(color = Color.White),
+                colors = NavigationBarItemDefaults.colors(indicatorColor = YmenuOrangeAlt),
                 icon = {
                     IconButton(
-                        content = { Icon(painterResource(id = navItem.icon) , contentDescription = null ) },
+                        content = { Icon(painterResource(id = navItem.icon) , contentDescription = null) },
                         onClick = {
                             navController.navigate(navItem.route) {
                                 launchSingleTop = true
@@ -45,7 +49,7 @@ fun BottomNavigationBar(
 
                     )
                 },
-                enabled = false,
+                enabled = true,
                 onClick = {},
             )
         }

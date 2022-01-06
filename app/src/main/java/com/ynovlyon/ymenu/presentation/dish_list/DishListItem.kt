@@ -16,15 +16,24 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.ynovlyon.ymenu.data.Dish
 
 
 @Composable
-fun DishListItem(dish: Dish) {
+fun DishListItem(dish: Dish, navController: NavController) {
     Card(
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable(
+                onClick = {
+                    navController.navigate("details") {
+                        popUpTo("menu") { inclusive = true }
+                    }
+                }
+                ),
         elevation = 2.dp,
 //        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),

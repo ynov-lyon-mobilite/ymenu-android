@@ -2,6 +2,9 @@ package com.ynovlyon.ymenu
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.ynovlyon.ymenu.data.Dish
 import com.ynovlyon.ymenu.presentation.onboarding.Greeting
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -14,7 +17,15 @@ fun Greeting(name: String) {
 }
 @Composable
 fun Menu() {
-    DishList()
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "menu") {
+        composable(route = "menu") {
+            DishList(navController = navController)
+        }
+        composable(route = "details") {
+            DetailsPlats(navController = navController)
+        }
+    }
 }
 @ExperimentalPermissionsApi
 @Composable
