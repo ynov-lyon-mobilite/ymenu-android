@@ -1,4 +1,6 @@
-package com.ynovlyon.ymenu
+package com.ynovlyon.ymenu.presentation.onboarding
+
+import com.ynovlyon.ymenu.R
 
 data class SampleOnBoard(
     val image: Int,

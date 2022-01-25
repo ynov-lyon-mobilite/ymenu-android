@@ -1,4 +1,4 @@
-package com.ynovlyon.ymenu.ui.theme
+package com.ynovlyon.ymenu.presentation.dish_list
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
