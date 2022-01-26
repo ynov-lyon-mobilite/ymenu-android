@@ -2,6 +2,7 @@ package com.ynovlyon.ymenu
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.ynovlyon.ymenu.data.Dish
 import com.ynovlyon.ymenu.presentation.onboarding.Greeting
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -12,10 +13,12 @@ import com.ynovlyon.ymenu.presentation.dish_list.DishList
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
+@ExperimentalPagerApi
 @Composable
 fun Menu() {
     DishList()
 }
+
 @ExperimentalPermissionsApi
 @Composable
 fun QrCode(){

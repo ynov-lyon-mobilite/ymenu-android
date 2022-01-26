@@ -42,10 +42,10 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
     val currentPageValue = currentPage.value
 
     val pagerState = rememberPagerState(
-        pageCount = onBoardItem.size,
-        initialOffscreenLimit = 2,
-        initialPage = 0,
-        infiniteLoop = false
+//        pageCount = onBoardItem.size,
+//        initialOffscreenLimit = 2,
+//        initialPage = 0,
+//        infiniteLoop = false
     )
 
     Scaffold(
@@ -70,7 +70,8 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     HorizontalPager(
-                        state = pagerState
+                        state = pagerState,
+                        count = onBoardItem.size
                     ) { page ->
                         Column(
                             modifier = Modifier

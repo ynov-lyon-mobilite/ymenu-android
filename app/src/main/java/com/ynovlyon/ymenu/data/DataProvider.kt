@@ -152,6 +152,12 @@ object DataProvider {
             restaurant_id = 1,
             name = "Dessert",
             category_id = 3
+        ),
+        DishCategory(
+        id = 4,
+        restaurant_id = 1,
+        name = "teub en y",
+        category_id = 4
         )
     )
 }
