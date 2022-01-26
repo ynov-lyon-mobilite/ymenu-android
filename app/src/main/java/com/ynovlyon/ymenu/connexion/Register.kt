@@ -51,7 +51,6 @@ fun RegisterPage() {
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.68f)
-                // .clip(RoundedCornerShape(topLeft = 38.dp, topRight = 38.dp))
                 .padding(18.dp)
         ) {
 
@@ -61,7 +60,7 @@ fun RegisterPage() {
                 OutlinedTextField(
                     value = nomValue.value,
                     onValueChange = { nomValue.value = it },
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.ic_account), contentDescription = "") },
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_account), contentDescription = "") },
                     placeholder = { Text(text = "Ton nom d'utilisateur")},
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(8.8f)
@@ -72,7 +71,7 @@ fun RegisterPage() {
                 OutlinedTextField(
                     value = adresseMailValue.value,
                     onValueChange = { adresseMailValue.value = it },
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.mail), contentDescription = "") },
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.mail), contentDescription = "") },
                     placeholder = { Text(text = "louis@gmail.com")},
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )
@@ -84,7 +83,7 @@ fun RegisterPage() {
                     value = passWordValue.value,
                     onValueChange = { passWordValue.value = it },
                     modifier = Modifier.fillMaxWidth(8.8f),
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
                     placeholder = { Text(text = "Ton mot de passe")}
                 )
 
@@ -94,7 +93,7 @@ fun RegisterPage() {
                 OutlinedTextField(
                     value = confirmPWValue.value,
                     onValueChange = { confirmPWValue.value = it },
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "")},
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "")},
                     placeholder = { Text(text = "Confirmer votre mot de passe")},
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )

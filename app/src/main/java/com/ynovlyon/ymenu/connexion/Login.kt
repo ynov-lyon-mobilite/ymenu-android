@@ -55,7 +55,7 @@ fun LoginPage(){
                 OutlinedTextField(value = nomValue.value,
                     onValueChange = { nomValue.value  = it},
                     placeholder = { Text(text = "Ton nom utilisateur")},
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.ic_account), contentDescription = "") },
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_account), contentDescription = "") },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )
@@ -64,7 +64,7 @@ fun LoginPage(){
                 Text(text = "Mot de passe",modifier = Modifier.fillMaxWidth(8.8f))
                 OutlinedTextField(value = passWordValue.value, 
                     onValueChange = { passWordValue.value  = it},
-                    trailingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
+                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
                     placeholder = { Text(text = "Ton mot de passe")},
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )
