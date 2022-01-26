@@ -25,8 +25,7 @@ fun RegisterPage() {
     val imageLogo = painterResource(id = R.drawable.logo1)
     val description = "logo"
 
-    val iconFleche = painterResource(id = R.drawable.fleche)
-    val descriptionIconFleche = "icon fleche"
+
 
 
     val nomValue = remember { mutableStateOf("") }
@@ -116,7 +115,7 @@ fun RegisterPage() {
                 ) {
                     Text(text = "S'inscrire")
                     Spacer(modifier = Modifier.padding(2.dp))
-                    Icon(painter = iconFleche, contentDescription = descriptionIconFleche)
+                    Icon(painter = painterResource(id =R.drawable.fleche ), contentDescription = "")
                 }
 
 
