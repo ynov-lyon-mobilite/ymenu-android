@@ -11,6 +11,8 @@ import androidx.camera.core.ImageProxy
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
+import com.ynovlyon.ymenu.ApiClient
+import kotlinx.coroutines.*
 
 class QrCodeAnalyzer(
     private val context: Context,
@@ -20,8 +22,8 @@ class QrCodeAnalyzer(
     /**
      * This parameters will handle preview box scaling
      */
-    private var scaleX = 1f
-    private var scaleY = 1f
+    private var scaleX = 500f
+    private var scaleY = 500f
 
     private fun translateX(x: Float) = x * scaleX
     private fun translateY(y: Float) = y * scaleY
@@ -56,10 +58,12 @@ class QrCodeAnalyzer(
                             // Handle received barcodes...
                             val qrCodeResult = barcode.rawValue
                             if (qrCodeResult !== null) {
-                                val restaurantId = barcode.rawValue.trim(',')
-                                val restaurantName = barcode.rawValue.trim(',')
+                                val restaurantData: List<String> =
+                                    qrCodeResult.split(',').map { it -> it.trim() }
+                                val restaurantId: String = restaurantData[0]
+                                val restaurantName: String = restaurantData[1]
+                                executeCall(restaurantId)
                             }
-                            println("OUI : $qrCodeResult")
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
                                 qrCodeBoxView.setRect(
@@ -78,5 +82,32 @@ class QrCodeAnalyzer(
         }
 
         image.close()
+    }
+
+    private fun executeCall(id: String) {
+        runBlocking {
+            launch(Dispatchers.Default) {
+                try {
+                    val response = ApiClient.restaurantApiService.getRestaurantById(id)
+                    if (response.isSuccessful && response.body() != null) {
+                        val content = response.body()
+
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Error Occurred",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        context,
+                        "Error Occured",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+
     }
 }
