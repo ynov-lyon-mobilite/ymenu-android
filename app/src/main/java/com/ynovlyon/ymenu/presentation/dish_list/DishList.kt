@@ -58,7 +58,7 @@ fun DishList(navController: NavController) {
         VerticalPager(
             state = pagerState,
             count = tabTitles.size,
-        ) { tabIndex ->
+        ) { tabIndex -> tabIndex
             LazyColumn(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
             ) {
@@ -71,14 +71,4 @@ fun DishList(navController: NavController) {
             }
         }
     }
-}
-
-
-
-
-@Composable
-fun CategoryList(selectedTabIndex: Int, dish: Dish) {
-//    TabRow(selectedTabIndex = selectedTabIndex) {
-//        DishListItem(dish = dish)
-//    }
 }
