@@ -118,7 +118,7 @@ object DataProvider {
             ))
         ),
         Dish(
-            id = 2,
+            id = 7,
             restaurant_id = 1,
             name = "Crevette ",
             price = "12,5 €",
@@ -127,6 +127,20 @@ object DataProvider {
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 2,
+                id = 2,
+                name = "maîs"
+            ))
+        ),
+        Dish(
+            id = 8,
+            restaurant_id = 1,
+            name = "Poulet saté ",
+            price = "12,5 €",
+            url_image = R.drawable.p3,
+            url_model = "",
+            category_id = 3,
+            ingredients = listOf(Ingredients(
+                dish_id = 4,
                 id = 2,
                 name = "maîs"
             ))
@@ -156,8 +170,15 @@ object DataProvider {
         DishCategory(
         id = 4,
         restaurant_id = 1,
-        name = "teub en y",
+        name = "David en y",
         category_id = 4
+        ),
+        DishCategory(
+            id = 5,
+            restaurant_id = 1,
+            name = "David en y",
+            category_id = 4
         )
+
     )
 }

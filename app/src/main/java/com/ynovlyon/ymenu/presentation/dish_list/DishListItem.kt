@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ynovlyon.ymenu.data.Dish
+import com.ynovlyon.ymenu.data.DishCategory
 
 
 @Composable
@@ -27,11 +28,11 @@ fun DishListItem(dish: Dish, navController: NavController) {
             .padding(horizontal = 5.dp, vertical = 5.dp)
             .fillMaxWidth()
             .clickable(
-            onClick = {
-                navController.navigate("details") {
-                    popUpTo("menu") { inclusive = true }
+                onClick = {
+                    navController.navigate("details") {
+                        popUpTo("menu") { inclusive = true }
+                    }
                 }
-            }
             ),
         elevation = 2.dp,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
@@ -74,4 +75,28 @@ fun DishImage(dish: Dish) {
             .size(84.dp)
             .clip(RoundedCornerShape(corner = CornerSize(16.dp)))
     )
+}
+
+@Composable
+fun DishCategory(dishCategory: DishCategory, navController: NavController){
+    Column(
+        modifier = Modifier
+            .padding(start = 20.dp, top = 0.dp, end = 20.dp, bottom = 0.dp)
+            .clickable(
+                onClick = {
+                    navController.navigate("details") {
+                        popUpTo("menu") { inclusive = true }
+                    }
+                }
+            )
+    ) {
+        Text( text = dishCategory.name )
+    }
+}
+
+@Composable
+fun DishListCategory(dishCategory: DishCategory){
+    Row() {
+        Text(text = dishCategory.name )
+    }
 }
