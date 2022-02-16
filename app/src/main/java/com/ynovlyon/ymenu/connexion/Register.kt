@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ynovlyon.ymenu.R
@@ -33,7 +34,7 @@ fun RegisterPage() {
     val passWordValue = remember { mutableStateOf("") }
     val confirmPWValue = remember { mutableStateOf("") }
 
-    val passwordVisibility = remember { false }
+
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Spacer(modifier = Modifier.padding(3.dp))
@@ -76,13 +77,14 @@ fun RegisterPage() {
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )
 
-
+            // gerer page oubli de mot de passe
                 Spacer(modifier = Modifier.padding(15.dp))
                 Text(text = "Mot de passe", modifier = Modifier.fillMaxWidth(8.8f))
                 OutlinedTextField(
                     value = passWordValue.value,
                     onValueChange = { passWordValue.value = it },
                     modifier = Modifier.fillMaxWidth(8.8f),
+                    visualTransformation = PasswordVisualTransformation(),
                     leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
                     placeholder = { Text(text = "Ton mot de passe")}
                 )
@@ -93,6 +95,7 @@ fun RegisterPage() {
                 OutlinedTextField(
                     value = confirmPWValue.value,
                     onValueChange = { confirmPWValue.value = it },
+                    visualTransformation = PasswordVisualTransformation(),
                     leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "")},
                     placeholder = { Text(text = "Confirmer votre mot de passe")},
                     modifier = Modifier.fillMaxWidth(8.8f)

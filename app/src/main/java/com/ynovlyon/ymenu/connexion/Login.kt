@@ -1,6 +1,7 @@
 package com.ynovlyon.ymenu.connexion
 
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import com.ynovlyon.ymenu.R
 
 
@@ -27,10 +30,11 @@ fun LoginPage(){
 
 
 
-    val nomValue = remember { mutableStateOf("")}
+    val adresseMailValue = remember { mutableStateOf("")}
     val passWordValue = remember { mutableStateOf("")}
 
-    val passwordVisibility = remember{false}
+
+
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter){
         Box(modifier = Modifier
@@ -50,15 +54,14 @@ fun LoginPage(){
         ){
 
             Spacer(modifier = Modifier.padding(1.dp))
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "Nom utilisateur",modifier = Modifier.fillMaxWidth(8.8f))
-                OutlinedTextField(value = nomValue.value,
-                    onValueChange = { nomValue.value  = it},
-                    placeholder = { Text(text = "Ton nom utilisateur")},
-                    leadingIcon = { Icon(painter = painterResource(id = R.drawable.ic_account), contentDescription = "") },
-                    singleLine = true,
-                    modifier = Modifier.fillMaxWidth(8.8f)
-                )
+            Text(text = "Adresse mail", modifier = Modifier.fillMaxWidth(8.8f))
+            OutlinedTextField(
+                value = adresseMailValue.value,
+                onValueChange = { adresseMailValue.value = it },
+                leadingIcon = { Icon(painter = painterResource(id = R.drawable.mail), contentDescription = "") },
+                placeholder = { Text(text = "louis@gmail.com")},
+                modifier = Modifier.fillMaxWidth(8.8f)
+            )
 
                 Spacer(modifier = Modifier.padding(15.dp))
                 Text(text = "Mot de passe",modifier = Modifier.fillMaxWidth(8.8f))
@@ -66,6 +69,7 @@ fun LoginPage(){
                     onValueChange = { passWordValue.value  = it},
                     leadingIcon = { Icon(painter = painterResource(id = R.drawable.cadenas), contentDescription = "") },
                     placeholder = { Text(text = "Ton mot de passe")},
+                    visualTransformation = PasswordVisualTransformation(),
                     modifier = Modifier.fillMaxWidth(8.8f)
                 )
 
@@ -95,13 +99,17 @@ fun LoginPage(){
                     Icon(painter = painterResource(id = R.drawable.fleche), contentDescription = "")
                 }
 
-
+                val monIntent = Intent(this, RegisterPage());
                 Spacer(modifier = Modifier.padding(28.dp))
                 Text(text = "Pas de compte?")
-                Text(text = "S'inscrire",
+                Text(
+                    text = "S'inscrire",
                     color = Color(0xFFFDAF5E),
-                    modifier = Modifier.clickable(onClick = {}),
-                    )
+                    modifier = Modifier.clickable(onClick = {
+
+                        startActivity(Intent(this, RegisterPage()));
+                    }),
+                )
                 Spacer(modifier = Modifier.padding(28.dp))
 
             }
@@ -114,4 +122,4 @@ fun LoginPage(){
 
 
 
-}
+
