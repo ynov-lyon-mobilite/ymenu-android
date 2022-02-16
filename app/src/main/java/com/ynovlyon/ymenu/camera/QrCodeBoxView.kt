@@ -23,7 +23,7 @@ class QrCodeBoxView(
 
         paint.style = Paint.Style.STROKE
         paint.color = Color.RED
-        paint.strokeWidth = 5f
+        paint.strokeWidth = 10f
 
         canvas?.drawRoundRect(mRect, cornerRadius, cornerRadius, paint)
     }

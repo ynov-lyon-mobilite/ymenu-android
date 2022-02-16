@@ -26,7 +26,7 @@ fun NavigationHost(
         }
 
         composable(BottomNavItems.QrCode.route) {
-            QrCode()
+            QrCode(navController)
         }
 
         composable(BottomNavItems.Account.route) {

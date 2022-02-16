@@ -8,6 +8,8 @@ import android.graphics.RectF
 import android.widget.Toast
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
@@ -17,13 +19,14 @@ import kotlinx.coroutines.*
 class QrCodeAnalyzer(
     private val context: Context,
     private val qrCodeBoxView: QrCodeBoxView,
+    private val navController: NavController
 ) : ImageAnalysis.Analyzer {
 
     /**
      * This parameters will handle preview box scaling
      */
-    private var scaleX = 500f
-    private var scaleY = 500f
+    private var scaleX = 5f
+    private var scaleY = 5f
 
     private fun translateX(x: Float) = x * scaleX
     private fun translateY(y: Float) = y * scaleY
@@ -62,7 +65,7 @@ class QrCodeAnalyzer(
                                     qrCodeResult.split(',').map { it -> it.trim() }
                                 val restaurantId: String = restaurantData[0]
                                 val restaurantName: String = restaurantData[1]
-                                executeCall(restaurantId)
+                                executeCall(restaurantId, navController)
                             }
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
@@ -84,27 +87,20 @@ class QrCodeAnalyzer(
         image.close()
     }
 
-    private fun executeCall(id: String) {
+    private fun executeCall(id: String, navController: NavController) {
         runBlocking {
             launch(Dispatchers.Default) {
                 try {
                     val response = ApiClient.restaurantApiService.getRestaurantById(id)
                     if (response.isSuccessful && response.body() != null) {
                         val content = response.body()
-
+                        println(content)
+                        navController.navigate("menu")
                     } else {
-                        Toast.makeText(
-                            context,
-                            "Error Occurred",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        println("eroor")
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(
-                        context,
-                        "Error Occured",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    println(e)
                 }
             }
         }

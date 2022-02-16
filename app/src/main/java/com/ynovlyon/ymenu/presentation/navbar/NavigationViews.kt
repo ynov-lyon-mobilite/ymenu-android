@@ -7,6 +7,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ynovlyon.ymenu.data.Dish
 import com.ynovlyon.ymenu.presentation.onboarding.Greeting
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
@@ -27,14 +32,12 @@ fun Menu() {
         }
     }
 }
+
 @ExperimentalPermissionsApi
 @Composable
-fun QrCode(){
-    Camera()
-}
-
-@Composable
-fun iui(){
+fun QrCode(navController: NavController) {
+//    val navController = rememberNavController()
+    Camera(navController = navController)
 }
 
 @Composable
