@@ -35,8 +35,13 @@ fun Menu() {
 
 @ExperimentalPermissionsApi
 @Composable
-fun QrCode(navController: NavController) {
-//    val navController = rememberNavController()
+fun QrCode() {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "qrcode") {
+        composable(route = "menu") {
+            Menu()
+        }
+    }
     Camera(navController = navController)
 }
 

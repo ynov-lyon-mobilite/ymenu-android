@@ -95,7 +95,9 @@ class QrCodeAnalyzer(
                     if (response.isSuccessful && response.body() != null) {
                         val content = response.body()
                         println(content)
-                        navController.navigate("menu")
+                        navController.navigate("menu") {
+                            popUpTo("menu") { inclusive = true}
+                        }
                     } else {
                         println("eroor")
                     }
