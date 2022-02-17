@@ -45,7 +45,7 @@ fun InformationsPage() {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.68f)
+                .fillMaxHeight(0.80f)
                 .padding(18.dp)
         ) {
             Text(
