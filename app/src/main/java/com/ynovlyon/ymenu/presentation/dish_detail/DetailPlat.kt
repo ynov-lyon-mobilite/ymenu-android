@@ -41,7 +41,10 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.Composable
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import java.util.concurrent.Executor
@@ -49,83 +52,110 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import com.ynovlyon.ymenu.presentation.theme.fonts
 import androidx.compose.runtime.*
+import androidx.navigation.NavController
 
 @Preview(showBackground = true)
 @Composable
-fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de riz", "Nem", "salade", "carotte")) {
-
-    Column() {
-        Text(
-            text = "Détails du plat", style =
-            TextStyle(
-                fontSize = 50.sp,
-                fontWeight = FontWeight.Bold
-            )
-        )
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(20.dp),
-        verticalArrangement = Arrangement.Center,
-
-        ) {
-
-
-        val painter = painterResource(id = R.drawable.boeuf)
-        val description = "Bo bun boeuf avec nems"
-        val title = "Bo bun boeuf avec nems          13.90$"
-        ImageCard(
-            painter = painter,
-            contentDescription = description,
-            title = title
-        )
-        Text(
-            text = "Ingrédients", style =
-            TextStyle(
-                fontSize = 35.sp,
-                fontWeight = FontWeight.Bold
-            )
-        )
-
-
-        for (name in names) {
-            LazyColumn(modifier = Modifier) {
-                items(items = names) {
-                    Divider()
-                }
-            }
-            Text(
-                text = name,
-                style = TextStyle(fontSize = 20.sp),
-                modifier = Modifier.padding(3.dp),
-
+fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de riz", "Nem", "salade", "carotte"), navController: NavController) {
+    Scaffold(
+        topBar = {
+            Row {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .clickable {
+                            navController.navigate("menu")
+                        }
                 )
+            }
         }
+    ) {
+        Column() {
+            Text(
+                text = "Détails du plat", style =
+                TextStyle(
+                    fontSize = 40.sp,
+                    fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier
+                    .padding(bottom = 12.dp, start = 12.dp)
 
-        Column(modifier = Modifier
-            .padding(10.dp)
-            .align(Alignment.CenterHorizontally)
+            )
+        }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
 
-
-        ) {
-            Button(
-                onClick = {},
-                shape = RoundedCornerShape(20.dp)
             ) {
-                //icon cube 3D pas trouver
-                //                    Icon(
-                //                        imageVector = Icons.Filled.Search,
-                //                        contentDescription = "Voir en RA",
-                //                        Modifier.padding(end = 8.dp)
-                //                    )
-                Text(text = "Voir en RA", fontSize = 18.sp)
+
+
+            val painter = painterResource(id = R.drawable.boeuf)
+            val description = "Bo bun boeuf avec nems"
+            val title = "Bo bun boeuf avec nems                13.90€"
+            ImageCard(
+                painter = painter,
+                contentDescription = description,
+                title = title
+            )
+            Text(
+                text = "Ingrédients", style =
+                TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                ),
+                modifier = Modifier
+                    .padding(10.dp)
+            )
+
+            for (name in names) {
+                LazyColumn(modifier = Modifier) {
+                    items(items = names) {
+                        Divider(
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .height(0.2.dp)
+                        )
+
+                    }
+                }
+                Text(
+                    text = name,
+                    style = TextStyle(fontSize = 15.sp),
+                    modifier = Modifier
+                        .padding(7.dp)
+                )
             }
 
+            Column(modifier = Modifier
+                .padding(10.dp)
+                .align(Alignment.CenterHorizontally)
+
+
+            ) {
+                Button(
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
+                    onClick = {},
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    //icon cube 3D pas trouver
+                    //                    Icon(
+                    //                        imageVector = Icons.Filled.Search,
+                    //                        contentDescription = "Voir en RA",
+                    //                        Modifier.padding(end = 8.dp)
+                    //                    )
+                    Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                }
+
+            }
+
+
         }
-
-
     }
+
 
 
 }
@@ -143,7 +173,7 @@ fun ImageCard(
         shape = RoundedCornerShape(25.dp),
         elevation = 5.dp
     ) {
-        Box(modifier = Modifier.height(290.dp)) {
+        Box(modifier = Modifier.height(250.dp)) {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
