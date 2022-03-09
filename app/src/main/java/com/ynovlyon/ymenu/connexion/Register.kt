@@ -1,8 +1,6 @@
 package com.ynovlyon.ymenu.connexion
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -33,11 +31,14 @@ fun RegisterPage() {
     val adresseMailValue = remember { mutableStateOf("") }
     val passWordValue = remember { mutableStateOf("") }
     val confirmPWValue = remember { mutableStateOf("") }
-
+    val scrollState = rememberScrollState()
 
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        Spacer(modifier = Modifier.padding(3.dp))
+        Spacer(modifier = Modifier
+            .padding(3.dp)
+            
+        )
         Box(
             modifier = Modifier
                 .fillMaxSize()

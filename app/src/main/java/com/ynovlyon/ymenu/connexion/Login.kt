@@ -25,11 +25,11 @@ import com.ynovlyon.ymenu.R
 @Composable
 fun LoginPage(){
 
+
+
+
     val image = painterResource(id = R.drawable.logo1)
     val description = "logo"
-
-
-
     val adresseMailValue = remember { mutableStateOf("")}
     val passWordValue = remember { mutableStateOf("")}
 
@@ -37,6 +37,7 @@ fun LoginPage(){
 
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter){
+
         Box(modifier = Modifier
             .fillMaxSize()
             .background(Color.White),contentAlignment = Alignment.TopCenter)
@@ -99,7 +100,7 @@ fun LoginPage(){
                     Icon(painter = painterResource(id = R.drawable.fleche), contentDescription = "")
                 }
 
-                val monIntent = Intent(this, RegisterPage());
+               // val monIntent = Intent(this, RegisterPage());
                 Spacer(modifier = Modifier.padding(28.dp))
                 Text(text = "Pas de compte?")
                 Text(
@@ -107,7 +108,7 @@ fun LoginPage(){
                     color = Color(0xFFFDAF5E),
                     modifier = Modifier.clickable(onClick = {
 
-                        startActivity(Intent(this, RegisterPage()));
+                       // startActivity(Intent(this, RegisterPage()));
                     }),
                 )
                 Spacer(modifier = Modifier.padding(28.dp))
