@@ -37,7 +37,6 @@ fun RegisterPage() {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Spacer(modifier = Modifier
             .padding(3.dp)
-            
         )
         Box(
             modifier = Modifier
@@ -54,6 +53,7 @@ fun RegisterPage() {
                 .fillMaxWidth()
                 .fillMaxHeight(0.68f)
                 .padding(18.dp)
+                .verticalScroll(scrollState)
         ) {
 
             Spacer(modifier = Modifier.padding(1.dp))
