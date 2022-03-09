@@ -32,7 +32,6 @@ fun ProfilPage() {
         val annotatedString = buildAnnotatedString {
             appendInlineContent(id = "imageId")
             append(" Manahel Bouchkara")
-
         }
         val inlineContentMap = mapOf(
             "imageId" to InlineTextContent(
