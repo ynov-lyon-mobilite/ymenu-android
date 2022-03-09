@@ -3,7 +3,9 @@ package com.ynovlyon.ymenu.presentation.profil
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -24,9 +26,9 @@ import com.ynovlyon.ymenu.R
 @Preview(showBackground = true)
 @Composable
 fun InformationsPage() {
+
     val imageLogo = painterResource(id = R.drawable.p)
-
-
+    val scrollState = rememberScrollState()
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
         Box(
@@ -45,8 +47,9 @@ fun InformationsPage() {
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.80f)
+                .fillMaxHeight(0.70f)
                 .padding(18.dp)
+                .verticalScroll(scrollState)
         ) {
             Text(
                 text = "Mes informations",
