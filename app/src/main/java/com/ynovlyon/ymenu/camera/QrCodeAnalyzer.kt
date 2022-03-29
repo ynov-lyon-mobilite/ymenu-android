@@ -65,7 +65,8 @@ class QrCodeAnalyzer(
                                     qrCodeResult.split(',').map { it -> it.trim() }
                                 val restaurantId: String = restaurantData[0]
                                 val restaurantName: String = restaurantData[1]
-                                executeCall(restaurantId, navController)
+                                executeCall(restaurantId)
+                                switchToListing(navController)
                             }
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
@@ -87,25 +88,22 @@ class QrCodeAnalyzer(
         image.close()
     }
 
-    private fun executeCall(id: String, navController: NavController) {
+    private fun executeCall(id: String){
         runBlocking {
             launch(Dispatchers.Default) {
                 try {
                     val response = ApiClient.restaurantApiService.getRestaurantById(id)
                     if (response.isSuccessful && response.body() != null) {
                         val content = response.body()
-                        println(content)
-                        navController.navigate("menu") {
-                            popUpTo("menu") { inclusive = true}
-                        }
-                    } else {
-                        println("eroor")
                     }
                 } catch (e: Exception) {
                     println(e)
                 }
             }
         }
+    }
 
+    private fun switchToListing(navController: NavController) {
+        navController.navigate("menu")
     }
 }

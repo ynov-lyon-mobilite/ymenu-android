@@ -37,12 +37,14 @@ fun Menu() {
 @Composable
 fun QrCode() {
     val navController = rememberNavController()
-    NavHost(navController, startDestination = "qrcode") {
+    NavHost(navController, startDestination = "qrCode") {
+        composable(route = "qrCode") {
+            Camera(navController = navController)
+        }
         composable(route = "menu") {
-            Menu()
+            DishList(navController = navController)
         }
     }
-    Camera(navController = navController)
 }
 
 @Composable
