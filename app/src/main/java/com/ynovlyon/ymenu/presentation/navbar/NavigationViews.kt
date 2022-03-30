@@ -21,11 +21,11 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 @Composable
-fun Menu() {
+fun Menu(idRestaurant: String?) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "menu") {
         composable(route = "menu") {
-            DishList(navController = navController)
+            DishList(navController = navController, idRestaurant)
         }
         composable(route = "details") {
             DetailsPlats(navController = navController)
@@ -42,7 +42,7 @@ fun QrCode() {
             Camera(navController = navController)
         }
         composable(route = "menu") {
-            DishList(navController = navController)
+            DishList(navController = navController, idRestaurant = null)
         }
     }
 }

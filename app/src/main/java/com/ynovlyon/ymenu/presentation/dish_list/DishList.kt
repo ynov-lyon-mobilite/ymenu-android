@@ -18,11 +18,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.ynovlyon.ymenu.*
 import com.ynovlyon.ymenu.data.DataProvider
+import com.ynovlyon.ymenu.data.Restaurant
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
 @Composable
-fun DishList(navController: NavController) {
+fun DishList(navController: NavController, idRestaurant: String?) {
     val dishes = remember { DataProvider.dishesList }
+    if (idRestaurant != null) {
+        println("oui")
+    }
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
     ) {

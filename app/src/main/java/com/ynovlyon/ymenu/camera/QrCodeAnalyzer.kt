@@ -5,16 +5,17 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.RectF
-import android.widget.Toast
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
-import com.ynovlyon.ymenu.ApiClient
-import kotlinx.coroutines.*
+import com.ynovlyon.ymenu.ApiInterface
+import com.ynovlyon.ymenu.restaurant.RestaurantModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class QrCodeAnalyzer(
     private val context: Context,
@@ -63,10 +64,11 @@ class QrCodeAnalyzer(
                             if (qrCodeResult !== null) {
                                 val restaurantData: List<String> =
                                     qrCodeResult.split(',').map { it -> it.trim() }
-                                val restaurantId: String = restaurantData[0]
-                                val restaurantName: String = restaurantData[1]
-                                executeCall(restaurantId)
-                                switchToListing(navController)
+                                val restaurantId: String? = restaurantData[0]
+                                val restaurantName: String? = restaurantData[1]
+                                if (restaurantId != null && restaurantName != null) {
+                                    executeCall(restaurantId)
+                                }
                             }
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
@@ -88,22 +90,24 @@ class QrCodeAnalyzer(
         image.close()
     }
 
-    private fun executeCall(id: String){
-        runBlocking {
-            launch(Dispatchers.Default) {
-                try {
-                    val response = ApiClient.restaurantApiService.getRestaurantById(id)
-                    if (response.isSuccessful && response.body() != null) {
-                        val content = response.body()
-                    }
-                } catch (e: Exception) {
-                    println(e)
+    private fun executeCall(id: String) {
+        val apiInterface = ApiInterface.create().getRestaurantById(id)
+        apiInterface.enqueue(object : Callback<RestaurantModel> {
+            override fun onResponse(
+                call: Call<RestaurantModel>,
+                response: Response<RestaurantModel>
+            ) {
+                if (response.body() != null) {
+                    switchToListing(response.body()!!._id.toString())
                 }
             }
-        }
+
+            override fun onFailure(call: Call<RestaurantModel>, t: Throwable) {
+            }
+        })
     }
 
-    private fun switchToListing(navController: NavController) {
-        navController.navigate("menu")
+    private fun switchToListing(idRestaurant: String) {
+        navController.navigate("menu/$idRestaurant")
     }
 }
