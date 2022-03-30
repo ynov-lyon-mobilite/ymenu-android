@@ -1,13 +1,15 @@
 package com.ynovlyon.ymenu.presentation.dish_list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.*
 import androidx.compose.material.ScrollableTabRow
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
@@ -17,7 +19,6 @@ import com.ynovlyon.ymenu.DishCategory
 import com.ynovlyon.ymenu.DishListItem
 import com.ynovlyon.ymenu.data.DataProvider
 import com.ynovlyon.ymenu.data.DishCategory
-import kotlinx.coroutines.launch
 import androidx.compose.material.Text as Text
 
 
@@ -26,10 +27,9 @@ import androidx.compose.material.Text as Text
 @Composable
 fun DishList(navController: NavController) {
     val dishesCategory =  DataProvider.categoryList
-    val pagerState = rememberPagerState()
-    val scope = rememberCoroutineScope()
     val dishes = DataProvider.dishesList
-    val title = dishesCategory[3].toString()
+    var selectedIndex by remember { mutableStateOf(0) }
+    val onItemClick = { index: Int -> selectedIndex = index}
     LazyRow(
         modifier = Modifier
             .padding(start = 30.dp, top = 5.dp, end = 30.dp, bottom = 0.dp)
@@ -37,12 +37,11 @@ fun DishList(navController: NavController) {
             .fillMaxHeight()
     ){
         items(
-            items = dishesCategory,
+            count = dishesCategory.size,
             itemContent = {
-                DishCategory(dishCategory = it, navController = navController)
-            },
-        );
-
+                index ->  DishCategory(dishCategory = dishesCategory, index = index, selected = selectedIndex == index , onClick = onItemClick )
+           }
+        )
     }
     LazyColumn(
         modifier = Modifier
@@ -56,41 +55,4 @@ fun DishList(navController: NavController) {
         );
     }
 }
-//    Column() {
-//        ScrollableTabRow(selectedTabIndex = pagerState.currentPage,
-//            indicator = { tabPositions ->
-//                TabRowDefaults.Indicator(
-//                    Modifier.pagerTabIndicatorOffset(
-//                        pagerState,
-//                        tabPositions,
-//                    )
-//                )
-//            }) {
-//            tabTitles.forEachIndexed { index, title ->
-//                Tab(selected = pagerState.currentPage == index,
-//                    onClick = {
-//                        scope.launch {
-//                            pagerState.animateScrollToPage(index)
-//                        }
-//                    },
-//                    text =  { Text(title.name) })
-//
-//            }
-//        }
-//        VerticalPager(
-//            state = pagerState,
-//            count = tabTitles.size,
-//        ) { tabIndex -> tabIndex
-//            LazyColumn(
-//                contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-//            ) {
-//                items(
-//                    items = dishes,
-//                    itemContent = {
-//                        DishListItem(dish = it, navController = navController)
-//                    },
-//                )
-//            }
-//        }
-//    }
-//}
+

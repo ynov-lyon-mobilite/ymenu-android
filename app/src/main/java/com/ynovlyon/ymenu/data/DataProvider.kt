@@ -153,31 +153,36 @@ object DataProvider {
             id = 1,
             restaurant_id =  1,
             name = "Entrée",
-            category_id = 1
+            category_id = 1,
+            index = 1
         ),
         DishCategory(
             id = 2,
-           restaurant_id = 1,
+            restaurant_id = 1,
             name = "Plats",
             category_id = 2,
+            index =  2
         ),
         DishCategory(
             id = 3,
             restaurant_id = 1,
             name = "Dessert",
-            category_id = 3
+            category_id = 3,
+            index = 3
         ),
         DishCategory(
-        id = 4,
-        restaurant_id = 1,
-        name = "David en y",
-        category_id = 4
+            id = 4,
+            restaurant_id = 1,
+            name = "David en y",
+            category_id = 4,
+            index = 4
         ),
         DishCategory(
             id = 5,
             restaurant_id = 1,
-            name = "David en y",
-            category_id = 4
+            name = "Davidn  en y",
+            category_id = 4,
+            index = 5
         )
 
     )
