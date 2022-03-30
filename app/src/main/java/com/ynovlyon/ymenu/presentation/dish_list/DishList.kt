@@ -24,15 +24,13 @@ import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 fun DishList(navController: NavController) {
     val dishes = remember { DataProvider.dishesList }
     LazyColumn(
-        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        contentPadding = PaddingValues(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 100.dp),
     ) {
         items(
             items = dishes,
             itemContent = {
                 DishListItem(dish = it, navController = navController)
             },
-
-
         )
     }
 }

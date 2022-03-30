@@ -8,8 +8,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -40,11 +38,13 @@ import com.ynovlyon.ymenu.ui.theme.*
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.Composable
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.clickable
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.*
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.NavigationBar
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
 import java.util.concurrent.Executor
@@ -53,10 +53,11 @@ import java.util.concurrent.Executors
 import com.ynovlyon.ymenu.presentation.theme.fonts
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
+import com.ynovlyon.ymenu.data.Ingredients
 
 @Preview(showBackground = true)
 @Composable
-fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de riz", "Nem", "salade", "carotte"), navController: NavController) {
+fun DetailsPlats(names: List<Ingredients> = listOf(Ingredients(id = 1,dish_id = 2, name = "test"),Ingredients(id = 2,dish_id = 2, name = "test2"),Ingredients(id = 3,dish_id = 2, name = "test3"),Ingredients(id = 4,dish_id = 2, name = "test4"),Ingredients(id = 5,dish_id = 2, name = "test5"),Ingredients(id = 6,dish_id = 2, name = "test6"),Ingredients(id = 7,dish_id = 2, name = "test7"),Ingredients(id = 8,dish_id = 2, name = "test8")), navController: NavController) {
     Scaffold(
         topBar = {
             Row {
@@ -69,29 +70,24 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                             navController.navigate("menu")
                         }
                 )
+                Text(
+                    text = "Détails du plat", style =
+                    TextStyle(
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                    ),
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                )
             }
-        }
+        },
     ) {
-        Column() {
-            Text(
-                text = "Détails du plat", style =
-                TextStyle(
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .padding(bottom = 12.dp, start = 12.dp)
-
-            )
-        }
         Column(
             modifier = Modifier
-                .fillMaxSize()
                 .padding(10.dp),
             verticalArrangement = Arrangement.Center,
 
             ) {
-
 
             val painter = painterResource(id = R.drawable.boeuf)
             val description = "Bo bun boeuf avec nems"
@@ -101,6 +97,24 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                 contentDescription = description,
                 title = title
             )
+
+            Button(
+                colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
+                onClick = {},
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .padding(10.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                //icon cube 3D pas trouver
+                //                    Icon(
+                //                        imageVector = Icons.Filled.Search,
+                //                        contentDescription = "Voir en RA",
+                //                        Modifier.padding(end = 8.dp)
+                //                    )
+                Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+            }
+
             Text(
                 text = "Ingrédients", style =
                 TextStyle(
@@ -111,53 +125,18 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                     .padding(10.dp)
             )
 
-            for (name in names) {
-                LazyColumn(modifier = Modifier) {
-                    items(items = names) {
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .height(0.2.dp)
-                        )
-
+            LazyColumn(
+                modifier = Modifier,
+                contentPadding = PaddingValues(bottom = 100.dp),) {
+                items(
+                    items = names,
+                    itemContent = {
+                        IngredientsListItem(ingredient = it, navController = navController)
                     }
-                }
-                Text(
-                    text = name,
-                    style = TextStyle(fontSize = 15.sp),
-                    modifier = Modifier
-                        .padding(7.dp)
                 )
             }
-
-            Column(modifier = Modifier
-                .padding(10.dp)
-                .align(Alignment.CenterHorizontally)
-
-
-            ) {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
-                    onClick = {},
-                    shape = RoundedCornerShape(20.dp)
-                ) {
-                    //icon cube 3D pas trouver
-                    //                    Icon(
-                    //                        imageVector = Icons.Filled.Search,
-                    //                        contentDescription = "Voir en RA",
-                    //                        Modifier.padding(end = 8.dp)
-                    //                    )
-                    Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
-                }
-
-            }
-
-
         }
     }
-
-
-
 }
 
 @Composable
@@ -173,7 +152,7 @@ fun ImageCard(
         shape = RoundedCornerShape(25.dp),
         elevation = 5.dp
     ) {
-        Box(modifier = Modifier.height(250.dp)) {
+        Box(modifier = Modifier.height(200.dp)) {
             Image(
                 painter = painter,
                 contentDescription = contentDescription,
