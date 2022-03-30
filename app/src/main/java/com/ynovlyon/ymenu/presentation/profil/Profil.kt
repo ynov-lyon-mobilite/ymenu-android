@@ -99,7 +99,7 @@ fun ProfilPage() {
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Mes informations")
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Spacer(Modifier.width(140.dp))
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
@@ -123,7 +123,7 @@ fun ProfilPage() {
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Historique des visites")
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Spacer(Modifier.width(110.dp))
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
@@ -147,7 +147,7 @@ fun ProfilPage() {
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Donner son avis")
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Spacer(Modifier.width(160.dp))
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
@@ -171,7 +171,7 @@ fun ProfilPage() {
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Informations légales")
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Spacer(Modifier.width(130.dp))
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
@@ -194,7 +194,7 @@ fun ProfilPage() {
                 )
                 Spacer(Modifier.size(ButtonDefaults.IconSpacing))
                 Text(text = "Language")
-                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                Spacer(Modifier.width(210.dp))
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
@@ -202,8 +202,7 @@ fun ProfilPage() {
             Button(
                 onClick = {},
                 modifier = Modifier
-                    .fillMaxWidth(8.8f)
-                    .height(58.dp),
+                    .height(38.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color(0xFFFDAF5E),
                     contentColor = Color(0xFFFAF4FA)
