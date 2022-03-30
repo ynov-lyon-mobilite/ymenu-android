@@ -198,7 +198,7 @@ fun ProfilPage() {
                 Icon(painter = painterResource(id = R.drawable.fleche_droite), contentDescription = "")
             }
 
-            Spacer(modifier = Modifier.padding(25.dp))
+            Spacer(modifier = Modifier.padding(55.dp))
             Button(
                 onClick = {},
                 modifier = Modifier
