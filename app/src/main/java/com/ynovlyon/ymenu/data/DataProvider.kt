@@ -12,7 +12,7 @@ object DataProvider {
             price = "1550,5 €",
             url_image = R.drawable.p1,
             url_model_android = "",
-            category_id = 1,
+            category_id = "1",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -26,7 +26,7 @@ object DataProvider {
             price = "1550,5 €",
             url_image = R.drawable.p2,
             url_model_android = "",
-            category_id = 1,
+            category_id = "1",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -40,7 +40,7 @@ object DataProvider {
             price = "155 €",
             url_image = R.drawable.p3,
             "",
-            2,
+            "2",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -54,7 +54,7 @@ object DataProvider {
             price = "155 €",
             url_image = R.drawable.p4,
             url_model_android = "",
-            category_id = 2,
+            category_id = "2",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -68,7 +68,7 @@ object DataProvider {
             price = "155 €",
             url_image = R.drawable.p5,
             url_model_android = "",
-            category_id = 2,
+            category_id = "2",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -82,7 +82,7 @@ object DataProvider {
             price = "12,5 €",
             url_image = R.drawable.p2,
             url_model_android = "",
-            category_id = 3,
+            category_id = "3",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -96,7 +96,7 @@ object DataProvider {
             price = "12,5 €",
             url_image = R.drawable.p3,
             url_model_android = "",
-            category_id = 3,
+            category_id = "3",
             ingredients = listOf(Ingredients(
                 dish_id = 4,
                 id = 2,
@@ -110,7 +110,7 @@ object DataProvider {
             price = "12,5 €",
             url_image = R.drawable.p4,
             url_model_android = "",
-            category_id = 3,
+            category_id = "3",
             ingredients = listOf(Ingredients(
                 dish_id = 1,
                 id = 2,
@@ -124,7 +124,7 @@ object DataProvider {
             price = "12,5 €",
             url_image = R.drawable.p5,
             url_model_android = "",
-            category_id = 3,
+            category_id = "2",
             ingredients = listOf(Ingredients(
                 dish_id = 2,
                 id = 2,
@@ -138,7 +138,7 @@ object DataProvider {
             price = "12,5 €",
             url_image = R.drawable.p3,
             url_model_android = "",
-            category_id = 3,
+            category_id = "5",
             ingredients = listOf(Ingredients(
                 dish_id = 4,
                 id = 2,
@@ -150,40 +150,49 @@ object DataProvider {
 
     val categoryList = listOf(
         DishCategory(
-            id = 1,
+            id = "1",
             restaurant_id =  1,
             name = "Entrée",
-            category_id = 1,
             index = 1
         ),
         DishCategory(
-            id = 2,
+            id = "2",
             restaurant_id = 1,
             name = "Plats",
-            category_id = 2,
             index =  2
         ),
         DishCategory(
-            id = 3,
+            id = "3",
             restaurant_id = 1,
             name = "Dessert",
-            category_id = 3,
             index = 3
         ),
         DishCategory(
-            id = 4,
+            id = "4",
             restaurant_id = 1,
             name = "David en y",
-            category_id = 4,
             index = 4
         ),
         DishCategory(
-            id = 5,
+            id = "5",
             restaurant_id = 1,
             name = "Davidn  en y",
-            category_id = 4,
             index = 5
         )
 
+    )
+    val restaurantList = listOf(
+        Restaurant(
+            4,
+            "zzz",
+            "06099",
+            "lyon",
+            "0617332545",
+            "Minute Asia",
+            "",
+            "",
+            1
+
+        )
     )
 }

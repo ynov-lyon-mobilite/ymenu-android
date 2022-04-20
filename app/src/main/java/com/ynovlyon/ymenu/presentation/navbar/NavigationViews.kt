@@ -1,5 +1,6 @@
 package com.ynovlyon.ymenu
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
@@ -16,16 +17,22 @@ import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
+import com.ynovlyon.ymenu.data.DishCategory
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+@ExperimentalFoundationApi
 @ExperimentalPagerApi
 @Composable
-fun Menu(navController: NavHostController, id: String?) {
-    DishList(navController = navController, id = id)
+fun Menu(id: String?) {
+    val navController = rememberNavController()
+    NavHost(navController, startDestination = "menu") {
+        composable(route = "menu") {
+            DishList(navController = navController, id = id)
+        }
+        composable(route = "details") {
+            DetailsPlats(navController = navController)
+        }
+    }
 }
 @ExperimentalPermissionsApi
 @Composable

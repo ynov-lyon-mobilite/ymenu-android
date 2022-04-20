@@ -13,6 +13,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.ynovlyon.ymenu.data.DishCategory
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
 @ExperimentalPagerApi
@@ -20,7 +21,7 @@ import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 @ExperimentalFoundationApi
 @Composable
 fun NavigationHost(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     NavHost(
         navController = navController,
@@ -34,7 +35,7 @@ fun NavigationHost(
             })
         ) {
             it.arguments?.getString("id")?.let {
-                Menu(navController, id = it)
+                Menu(id = it)
             }
         }
 

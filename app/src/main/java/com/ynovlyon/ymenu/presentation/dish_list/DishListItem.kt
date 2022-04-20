@@ -1,10 +1,8 @@
 package com.ynovlyon.ymenu
 
 import android.graphics.Color
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import android.preference.PreferenceActivity
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CornerSize
@@ -22,11 +20,13 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.ynovlyon.ymenu.data.DataProvider
 import com.ynovlyon.ymenu.data.Dish
 import com.ynovlyon.ymenu.data.DishCategory
+import com.ynovlyon.ymenu.presentation.theme.YmenuOrangeAlt
 import kotlinx.coroutines.launch
 
 
@@ -93,7 +93,7 @@ fun DishImage(dish: Dish) {
 }
 
 @Composable
-fun DishCategory( dishCategory : DishCategory, index: Int, selected: Boolean, onClick: (Int) -> Unit){
+fun ListDishCategory( dishCategory : DishCategory, index: Int, selected: Boolean, onClick: (Int) -> Unit){
     Column(
         modifier = Modifier
             .padding(start = 20.dp, top = 0.dp, end = 30.dp, bottom = 0.dp)
@@ -104,9 +104,21 @@ fun DishCategory( dishCategory : DishCategory, index: Int, selected: Boolean, on
                 .clickable {
                     onClick.invoke(index)
                 }
-                .background(if (selected) MaterialTheme.colors.secondary else MaterialTheme.colors.onPrimary )
+                .background(if (selected) YmenuOrangeAlt else MaterialTheme.colors.onPrimary )
                 .fillMaxWidth()
                 .padding(3.dp)
+        )
+    }
+}
+
+@Composable
+fun NameCategoryHeader(dishCategory : DishCategory){
+    Column(
+        modifier = Modifier
+            .padding(start = 20.dp, top = 0.dp, end = 30.dp, bottom = 0.dp)
+    ) {
+        Text(
+            text =  dishCategory.name,
         )
     }
 }

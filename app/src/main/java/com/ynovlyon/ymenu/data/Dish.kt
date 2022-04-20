@@ -8,6 +8,6 @@ data class Dish (
     val price: String,
     val url_image: Int = 0,
     val url_model_android: String,
-    val category_id: Int,
+    val category_id: String,
     val ingredients: List<Ingredients>,
 )
