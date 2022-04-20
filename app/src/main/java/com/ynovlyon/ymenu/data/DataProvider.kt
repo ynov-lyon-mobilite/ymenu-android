@@ -11,7 +11,7 @@ object DataProvider {
             name = "Porc saté soja",
             price = "1550,5 €",
             url_image = R.drawable.p1,
-            url_model = "",
+            url_model_android = "",
             category_id = 1,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -25,7 +25,7 @@ object DataProvider {
             name = "Porc saté ",
             price = "1550,5 €",
             url_image = R.drawable.p2,
-            url_model = "",
+            url_model_android = "",
             category_id = 1,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -53,7 +53,7 @@ object DataProvider {
             name = "Boeuf saté soja",
             price = "155 €",
             url_image = R.drawable.p4,
-            url_model = "",
+            url_model_android = "",
             category_id = 2,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -67,7 +67,7 @@ object DataProvider {
             name = "Crevette soja",
             price = "155 €",
             url_image = R.drawable.p5,
-            url_model = "",
+            url_model_android = "",
             category_id = 2,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -81,7 +81,7 @@ object DataProvider {
             name = "Porc saté mais ",
             price = "12,5 €",
             url_image = R.drawable.p2,
-            url_model = "",
+            url_model_android = "",
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -95,7 +95,7 @@ object DataProvider {
             name = "Poulet saté ",
             price = "12,5 €",
             url_image = R.drawable.p3,
-            url_model = "",
+            url_model_android = "",
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 4,
@@ -109,7 +109,7 @@ object DataProvider {
             name = "Boeuf  soja",
             price = "12,5 €",
             url_image = R.drawable.p4,
-            url_model = "",
+            url_model_android = "",
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 1,
@@ -123,7 +123,7 @@ object DataProvider {
             name = "Crevette ",
             price = "12,5 €",
             url_image = R.drawable.p5,
-            url_model = "",
+            url_model_android = "",
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 2,
@@ -137,7 +137,7 @@ object DataProvider {
             name = "Poulet saté ",
             price = "12,5 €",
             url_image = R.drawable.p3,
-            url_model = "",
+            url_model_android = "",
             category_id = 3,
             ingredients = listOf(Ingredients(
                 dish_id = 4,
