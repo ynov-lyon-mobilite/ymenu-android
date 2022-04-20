@@ -21,7 +21,7 @@ fun NavigationHost(
     navController: NavHostController
 ) {
     NavHost(
-        navController = rememberNavController(),
+        navController = navController,
         startDestination = BottomNavItems.QrCode.route
     ) {
         composable(
