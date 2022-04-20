@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
@@ -20,34 +21,19 @@ import com.ynovlyon.ymenu.presentation.dish_list.DishList
 fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
+
 @Composable
-fun Menu(idRestaurant: String?) {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "menu") {
-        composable(route = "menu") {
-            DishList(navController = navController, idRestaurant)
-        }
-        composable(route = "details") {
-            DetailsPlats(navController = navController)
-        }
-    }
+fun Menu(navController: NavHostController, id: String?) {
+    DishList(navController = navController, id = id)
 }
 
 @ExperimentalPermissionsApi
 @Composable
-fun QrCode() {
-    val navController = rememberNavController()
-    NavHost(navController, startDestination = "qrCode") {
-        composable(route = "qrCode") {
-            Camera(navController = navController)
-        }
-        composable(route = "menu") {
-            DishList(navController = navController, idRestaurant = null)
-        }
-    }
+fun QrCode(navController: NavHostController) {
+    Camera(navController = navController)
 }
 
 @Composable
-fun Account(){
+fun Account() {
 }
 

@@ -22,9 +22,9 @@ import com.ynovlyon.ymenu.data.Restaurant
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
 @Composable
-fun DishList(navController: NavController, idRestaurant: String?) {
+fun DishList(navController: NavController, id: String?) {
     val dishes = remember { DataProvider.dishesList }
-    if (idRestaurant != null) {
+    if (id != null) {
         println("oui")
     }
     LazyColumn(
