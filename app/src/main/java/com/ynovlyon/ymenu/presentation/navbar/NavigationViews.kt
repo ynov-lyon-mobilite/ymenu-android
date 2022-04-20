@@ -1,26 +1,20 @@
 package com.ynovlyon.ymenu
 
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import com.ynovlyon.ymenu.data.Dish
-import com.ynovlyon.ymenu.presentation.onboarding.Greeting
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.*
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
 
+@ExperimentalPagerApi
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-@Composable
-fun Menu() {
+fun Menu(id: String?) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = "menu") {
         composable(route = "menu") {
-            DishList(navController = navController)
+            DishList(navController = navController, id = id)
         }
         composable(route = "details") {
             DetailsPlats(navController = navController)
@@ -29,15 +23,11 @@ fun Menu() {
 }
 @ExperimentalPermissionsApi
 @Composable
-fun QrCode(){
-    Camera()
+fun QrCode(navController: NavHostController) {
+    Camera(navController = navController)
 }
 
 @Composable
-fun iui(){
-}
-
-@Composable
-fun Account(){
+fun Account() {
 }
 
