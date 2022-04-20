@@ -16,6 +16,7 @@ import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.navigation.NavController
 import com.google.mlkit.vision.common.InputImage
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
@@ -37,11 +38,9 @@ fun QrCodePreview(image: InputImage) {
             for (barcode in barcodes) {
                 val bounds = barcode.boundingBox
                 val corners = barcode.boundingBox
-
                 val rawValue = barcode.rawValue
-
-                println("oui")
                 val valueType = barcode.valueType
+
                 when (valueType) {
                     Barcode.TYPE_URL -> {
                         val title = barcode.url!!.title
@@ -57,6 +56,7 @@ fun QrCodePreview(image: InputImage) {
 @SuppressLint("UnsafeOptInUsageError")
 @Composable
 fun CameraPreview(
+    navController: NavController,
     modifier: Modifier = Modifier,
     scaleType: PreviewView.ScaleType = PreviewView.ScaleType.FILL_CENTER,
     cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -90,6 +90,7 @@ fun CameraPreview(
                     QrCodeAnalyzer(
                         context,
                         QrCodeBoxView(context),
+                        navController
                     )
                 )
             }

@@ -49,6 +49,7 @@ fun DishListItem(dish: Dish, navController: NavController) {
                 }
             ),
         elevation = 2.dp,
+//        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),
     ) {
         Row(

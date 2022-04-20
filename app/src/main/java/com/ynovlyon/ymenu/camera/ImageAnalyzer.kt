@@ -31,7 +31,6 @@ private class ImageAnalyzer : ImageAnalysis.Analyzer {
 
                         val rawValue = barcode.rawValue
 
-                        println("oui")
                         val valueType = barcode.valueType
                         when (valueType) {
                             Barcode.TYPE_URL -> {

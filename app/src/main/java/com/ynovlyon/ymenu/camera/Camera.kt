@@ -12,12 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.ynovlyon.ymenu.util.CameraPermission
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
 @ExperimentalPermissionsApi
 @Composable
-fun Camera(modifier: Modifier = Modifier) {
+fun Camera(modifier: Modifier = Modifier, navController: NavController) {
     val context = LocalContext.current
     CameraPermission(
         permission = android.Manifest.permission.CAMERA,
@@ -36,6 +37,6 @@ fun Camera(modifier: Modifier = Modifier) {
             }
         }
     ) {
-        CameraPreview()
+        CameraPreview(navController)
     }
 }

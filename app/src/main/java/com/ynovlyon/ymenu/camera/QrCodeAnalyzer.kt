@@ -5,23 +5,29 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.RectF
-import android.widget.Toast
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
+import androidx.navigation.NavController
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
+import com.ynovlyon.ymenu.ApiInterface
+import com.ynovlyon.ymenu.restaurant.RestaurantModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class QrCodeAnalyzer(
     private val context: Context,
     private val qrCodeBoxView: QrCodeBoxView,
+    private val navController: NavController
 ) : ImageAnalysis.Analyzer {
 
     /**
      * This parameters will handle preview box scaling
      */
-    private var scaleX = 1f
-    private var scaleY = 1f
+    private var scaleX = 5f
+    private var scaleY = 5f
 
     private fun translateX(x: Float) = x * scaleX
     private fun translateY(y: Float) = y * scaleY
@@ -40,8 +46,6 @@ class QrCodeAnalyzer(
             // Update scale factors
             scaleX = 500 / img.height.toFloat()
             scaleY = 500 / img.width.toFloat()
-            println("SCAAALE" + scaleX)
-            println("SCAAALE" + scaleY)
 
             val inputImage = InputImage.fromMediaImage(img, image.imageInfo.rotationDegrees)
 
@@ -56,12 +60,16 @@ class QrCodeAnalyzer(
                     if (barcodes.isNotEmpty()) {
                         for (barcode in barcodes) {
                             // Handle received barcodes...
-                            Toast.makeText(
-                                context,
-                                "Value: " + barcode.rawValue,
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                            val qrCodeResult = barcode.rawValue
+                            if (qrCodeResult !== null) {
+                                val restaurantData: List<String> =
+                                    qrCodeResult.split(',').map { it -> it.trim() }
+                                val restaurantId: String? = restaurantData[0]
+                                val restaurantName: String? = restaurantData[1]
+                                if (restaurantId != null && restaurantName != null) {
+                                    executeCall(restaurantId)
+                                }
+                            }
                             // Update bounding rect
                             barcode.boundingBox?.let { rect ->
                                 qrCodeBoxView.setRect(
@@ -80,5 +88,26 @@ class QrCodeAnalyzer(
         }
 
         image.close()
+    }
+
+    private fun executeCall(id: String) {
+        val apiInterface = ApiInterface.create().getRestaurantById(id)
+        apiInterface.enqueue(object : Callback<RestaurantModel> {
+            override fun onResponse(
+                call: Call<RestaurantModel>,
+                response: Response<RestaurantModel>
+            ) {
+                if (response.body() != null) {
+                    switchToListing(response.body()!!._id.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<RestaurantModel>, t: Throwable) {
+            }
+        })
+    }
+
+    private fun switchToListing(idRestaurant: String) {
+        navController.navigate("menu/$idRestaurant")
     }
 }
