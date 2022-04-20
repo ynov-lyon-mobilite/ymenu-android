@@ -9,7 +9,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
@@ -42,6 +41,10 @@ fun NavigationHost(
 
         composable(BottomNavItems.Account.route) {
             Account()
+        }
+
+        composable("details"){
+            DetailsPlats(navController = navController)
         }
     }
 }

@@ -15,7 +15,6 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.ynovlyon.ymenu.*
 import com.ynovlyon.ymenu.data.DataProvider
 import com.ynovlyon.ymenu.data.Restaurant
@@ -35,8 +34,6 @@ fun DishList(navController: NavController, id: String?) {
             itemContent = {
                 DishListItem(dish = it, navController = navController)
             },
-
-
         )
     }
 }

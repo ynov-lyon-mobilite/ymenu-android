@@ -108,6 +108,8 @@ class QrCodeAnalyzer(
     }
 
     private fun switchToListing(idRestaurant: String) {
-        navController.navigate("menu/$idRestaurant")
+        navController.navigate("menu/$idRestaurant") {
+            popUpTo("qrCode") { inclusive = true }
+        }
     }
 }
