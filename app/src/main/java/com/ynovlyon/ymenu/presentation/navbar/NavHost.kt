@@ -10,9 +10,13 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.ynovlyon.ymenu.camera.Camera
+import com.ynovlyon.ymenu.presentation.dish_list.DishList
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
+@ExperimentalPagerApi
 @ExperimentalPermissionsApi
 @ExperimentalFoundationApi
 @Composable
@@ -31,16 +35,16 @@ fun NavigationHost(
             })
         ) {
             it.arguments?.getString("id")?.let {
-                Menu(navController, id = it)
+                Menu(id = it)
             }
         }
 
         composable(BottomNavItems.QrCode.route) {
-            QrCode(navController)
+            Camera(navController = navController)
         }
 
         composable(BottomNavItems.Account.route) {
-            Account()
+
         }
 
         composable("details"){
