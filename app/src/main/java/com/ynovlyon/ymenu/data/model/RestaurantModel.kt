@@ -1,4 +1,4 @@
-package com.ynovlyon.ymenu.restaurant
+package com.ynovlyon.ymenu.data.model
 
 data class RestaurantModel(
     val _id: String? = null,

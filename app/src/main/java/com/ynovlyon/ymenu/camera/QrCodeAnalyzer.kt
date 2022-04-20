@@ -12,7 +12,7 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.ynovlyon.ymenu.ApiInterface
-import com.ynovlyon.ymenu.restaurant.RestaurantModel
+import com.ynovlyon.ymenu.data.model.RestaurantModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

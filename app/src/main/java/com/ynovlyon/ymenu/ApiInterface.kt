@@ -1,6 +1,7 @@
 package com.ynovlyon.ymenu
 
-import com.ynovlyon.ymenu.restaurant.RestaurantModel
+import com.ynovlyon.ymenu.data.model.DishModel
+import com.ynovlyon.ymenu.data.model.RestaurantModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,5 +23,8 @@ interface ApiInterface {
 
     @GET("restaurants/{id}")
     fun getRestaurantById(@Path("id") id : String): Call<RestaurantModel>
+
+    @GET("dishes/restaurant/{id}")
+    fun getDishesListById(@Path("id") id : String): Call<List<DishModel>>
 }
 

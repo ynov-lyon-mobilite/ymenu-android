@@ -17,11 +17,13 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
 import com.ynovlyon.ymenu.data.Dish
+import com.ynovlyon.ymenu.data.model.DishModel
 
 
 @Composable
-fun DishListItem(dish: Dish, navController: NavController) {
+fun DishListItem(dish: DishModel, navController: NavController) {
     Card(
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
@@ -65,9 +67,10 @@ fun DishListItem(dish: Dish, navController: NavController) {
 
 
 @Composable
-fun DishImage(dish: Dish) {
+fun DishImage(dish: DishModel) {
+
     Image(
-        painter = painterResource(id = dish.url_image),
+        painter = rememberAsyncImagePainter(dish.url_logo),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
