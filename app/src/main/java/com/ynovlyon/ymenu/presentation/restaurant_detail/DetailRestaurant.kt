@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -52,29 +53,19 @@ fun DetailRestaurant(){
     }
 
     Column (
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxWidth()
 
     ){
-//        Column (
-//            modifier = Modifier.height(50.dp),
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            verticalArrangement = Arrangement.Center
-//        ){
-//            Text(
-//                text = "Auto sliding ",
-//                color = Color.White,
-//                fontSize = 20.sp,
-//                fontWeight = FontWeight.Bold
-//            )
-//        }
-
-       // Spacer(modifier = Modifier.height(30.dp))
 
         HorizontalPager(
+            verticalAlignment = Alignment.CenterVertically,
             state = pagerState,
             modifier = Modifier
                 .weight(1f)
                 .padding(0.dp, 18.dp, 0.dp, 50.dp)
-
         ) { page ->
             Card(
                 modifier = Modifier
@@ -89,14 +80,18 @@ fun DetailRestaurant(){
                             scaleY = scale
                         }
                     }
-                    .padding(10.dp, 170.dp, 15.dp, 160.dp),
-                shape = RoundedCornerShape(20.dp)
-
+                    .fillMaxWidth(),
+                    shape = RoundedCornerShape(20.dp),
             ){
-                Box(modifier = Modifier
-                    .background(Color.LightGray)
-                    .align(Alignment.Center), contentAlignment = Alignment.CenterStart
-                ){
+               Column(
+                   horizontalAlignment = Alignment.Start,
+                   verticalArrangement = Arrangement.Top,
+                   modifier = Modifier
+                       .fillMaxWidth()
+                       .fillMaxHeight(0.68f)
+
+               )
+                {
                     Image(painter = painterResource(
                         id = when(page){
 
@@ -107,16 +102,9 @@ fun DetailRestaurant(){
                         , contentDescription = ""
                         ,contentScale = ContentScale.Crop,
                         modifier = Modifier.fillMaxSize()
+
                     )
 
-                    Column(
-                        modifier = Modifier
-                            .align(Alignment.BottomStart)
-                            .padding(15.dp)
-
-                    ) {
-
-                    }
                 }
 
 
@@ -124,25 +112,33 @@ fun DetailRestaurant(){
 
         }
 
-    }
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart) {
-
-
         Column(
-            horizontalAlignment = Alignment.Start,
+            //horizontalAlignment = Alignment.Start,
+            verticalArrangement = Arrangement.Bottom,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp)
-        )
-        {
-            Text("Minute Asiat")
+
+        ){
+            Text(
+                "Minute Asiat",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
+            )
             Text("€€ . Restaurant asiatique")
             Text( "11:00 - 23:00")
-            Text("A propos")
+
+            Spacer(modifier = Modifier.padding(5.dp))
+
+            Text(
+                "A propos",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold
+            )
             Text("A travers cette application vous pourrez découvrir " +
                     "les différents menus ainsi que leurs plats en réalité augmentée." +
-                    "Visualisez votre plat sur votre table avant" +
+                    "Visualisez votre plat sur votre table avant " +
                     "même de l'avoir commandé.")
+
 
 
 
@@ -150,8 +146,27 @@ fun DetailRestaurant(){
 
 
 
+        Spacer(modifier = Modifier.padding(90.dp))
+
+            Button(
+                onClick = {},
+                modifier = Modifier
+                    .height(38.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(0xFFFDAF5E),
+                    contentColor = Color(0xFFFAF4FA)
+
+                )
+            ) {
+                Text(text = "Découvrir la carte")
+                Spacer(modifier = Modifier.padding(2.dp))
+
+            }
+
 
     }
+
+
 
 }
 
