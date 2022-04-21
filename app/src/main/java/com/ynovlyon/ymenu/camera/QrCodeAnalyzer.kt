@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
 import android.graphics.RectF
+import android.util.Log
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
 import androidx.navigation.NavController
@@ -16,6 +17,7 @@ import com.ynovlyon.ymenu.data.model.RestaurantModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.Exception
 
 class QrCodeAnalyzer(
     private val context: Context,

@@ -9,8 +9,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiInterface {
-    companion object{
-         var BASE_URL = "https://ymenu.herokuapp.com/api/"
+    companion object {
+        var BASE_URL = "https://ymenu.herokuapp.com/api/"
 
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()
@@ -25,6 +25,6 @@ interface ApiInterface {
     fun getRestaurantById(@Path("id") id : String): Call<RestaurantModel>
 
     @GET("dishes/restaurant/{id}")
-    fun getDishesListById(@Path("id") id : String): Call<List<DishModel>>
+    suspend fun getDishesListById(@Path("id") id: String): List<DishModel>
 }
 
