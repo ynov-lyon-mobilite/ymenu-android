@@ -7,7 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 
-@OptIn(ExperimentalPagerApi::class)
+@ExperimentalPagerApi
 @ExperimentalPermissionsApi
 @ExperimentalFoundationApi
 @Composable
