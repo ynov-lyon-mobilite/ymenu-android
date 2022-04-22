@@ -7,14 +7,16 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
+import com.ynovlyon.ymenu.presentation.dish_list.DishListViewModel
 
 @ExperimentalPagerApi
 @Composable
-fun Menu(id: String?) {
+fun Menu(id: String?, name: String?) {
     val navController = rememberNavController()
+    val vm = DishListViewModel()
     NavHost(navController, startDestination = "menu") {
         composable(route = "menu") {
-            DishList(navController = navController, id = id)
+            DishList(navController = navController, id = id, vm = vm)
         }
         composable(route = "details") {
             DetailsPlats(navController = navController)

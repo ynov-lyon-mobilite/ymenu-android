@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
+import com.ynovlyon.ymenu.connexion.LoginPage
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 
 @ExperimentalPagerApi
@@ -30,8 +31,9 @@ fun NavigationHost(
                 nullable = true
             })
         ) {
+            val test = it.arguments?.getString("name")
             it.arguments?.getString("id")?.let {
-                Menu(id = it)
+                Menu(id = it, name = test)
             }
         }
 
@@ -40,7 +42,7 @@ fun NavigationHost(
         }
 
         composable(BottomNavItems.Account.route) {
-
+            LoginPage()
         }
 
         composable("details"){
