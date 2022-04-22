@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.lerp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -56,7 +57,9 @@ fun DetailRestaurant(){
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier
+            .padding(18.dp)
             .fillMaxWidth()
+
 
     ){
 
@@ -65,7 +68,7 @@ fun DetailRestaurant(){
             state = pagerState,
             modifier = Modifier
                 .weight(1f)
-                .padding(0.dp, 18.dp, 0.dp, 50.dp)
+                .padding(0.dp, 18.dp, 0.dp, 0.dp)
         ) { page ->
             Card(
                 modifier = Modifier
@@ -117,27 +120,31 @@ fun DetailRestaurant(){
             verticalArrangement = Arrangement.Bottom,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(16.dp)
 
         ){
             Text(
-                "Minute Asiat",
-                fontSize = 15.sp,
+                "Minute Asia",
+                fontSize = 27.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text("€€ . Restaurant asiatique")
+            Text("€€ . Restaurant asiatique",
+                fontSize = 17.sp,)
+            Spacer(modifier = Modifier.padding(5.dp))
             Text( "11:00 - 23:00")
 
             Spacer(modifier = Modifier.padding(5.dp))
 
             Text(
                 "A propos",
-                fontSize = 15.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
             Text("A travers cette application vous pourrez découvrir " +
                     "les différents menus ainsi que leurs plats en réalité augmentée." +
                     "Visualisez votre plat sur votre table avant " +
-                    "même de l'avoir commandé.")
+                    "même de l'avoir commandé.",
+                fontSize = 16.sp,)
 
 
 
@@ -146,11 +153,12 @@ fun DetailRestaurant(){
 
 
 
-        Spacer(modifier = Modifier.padding(90.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
 
             Button(
                 onClick = {},
                 modifier = Modifier
+                    .padding(bottom = 100.dp)
                     .height(38.dp),
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Color(0xFFFDAF5E),

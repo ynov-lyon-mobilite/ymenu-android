@@ -24,6 +24,7 @@ import com.ynovlyon.ymenu.data.model.DishModel
 import com.ynovlyon.ymenu.data.model.RestaurantModel
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
+import com.ynovlyon.ymenu.presentation.restaurant_detail.DetailRestaurant
 
 @ExperimentalPagerApi
 @ExperimentalPermissionsApi
