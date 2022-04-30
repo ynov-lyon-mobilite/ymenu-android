@@ -61,7 +61,7 @@ fun DishListItem(dish: DishModel, navController: NavController, onClick: () -> U
                 modifier = Modifier
                     .padding(20.dp),
             ) {
-                Text(text = dish.price, fontWeight = FontWeight.Bold)
+                Text(text = (dish.price).toString(), fontWeight = FontWeight.Bold)
             }
         }
     }

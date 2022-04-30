@@ -100,8 +100,7 @@ class QrCodeAnalyzer(
                 response: Response<RestaurantModel>
             ) {
                 if (response.body() != null) {
-                    Log.d("hello", response.body().toString())
-                        getDishList(response.body()!!)
+                    getDishList(response.body()!!)
                 }
             }
 
@@ -119,9 +118,6 @@ class QrCodeAnalyzer(
             ) {
                 if (response.body() != null) {
                     pushDishes(response.body()!!)
-                    Log.d("hello", response.body().toString())
-                    // _dishList.clear()
-                    // _dishList.addAll(response.body()!!)
                     switchToListing(restaurant)
                 }
             }

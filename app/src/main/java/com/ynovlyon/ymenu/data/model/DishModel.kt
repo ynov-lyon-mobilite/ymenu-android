@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class DishModel(
     val _id: String?,
     val name: String,
-    val price: String,
+    val price: Float,
     val url_logo: String,
     val restaurant_id: String?,
     val category_id: String?,

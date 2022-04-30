@@ -1,17 +1,13 @@
 package com.ynovlyon.ymenu
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.TextStyle
@@ -22,19 +18,22 @@ import com.ynovlyon.ymenu.ui.theme.*
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.navigation.NavController
-import coil.compose.rememberAsyncImagePainter
 import com.ynovlyon.ymenu.data.model.DishModel
+import androidx.compose.foundation.*
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ViewInAr
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 
 @Composable
 fun DetailsPlats(
     navController: NavController,
     dish: DishModel
 ) {
-
-
     Scaffold(
         topBar = {
             Row {
@@ -47,37 +46,57 @@ fun DetailsPlats(
                             navController.popBackStack()
                         }
                 )
+                Text(
+                    modifier = Modifier.padding(top = 13.dp),
+                    text = "Menu", style =
+                    TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    ),
+                )
             }
         }
     ) {
-        Column() {
-            Text(
-                text = "Détails du plat", style =
-                TextStyle(
-                    fontSize = 40.sp,
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .padding(bottom = 12.dp, start = 12.dp)
-
-            )
-        }
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(10.dp),
+                .verticalScroll(rememberScrollState()),
             verticalArrangement = Arrangement.Center,
 
             ) {
 
-            val painter = rememberAsyncImagePainter(dish.url_logo)
-            val description = "Bo bun boeuf avec nems"
+            val painter = dish.url_logo
+            val description = dish.name
             val title = dish.name
             ImageCard(
                 painter = painter,
                 contentDescription = description,
-                title = title
+                title = title,
+                price = dish.price
             )
+            if (dish.url_model_android != null) {
+                Box(
+                    modifier = Modifier.fillMaxSize().padding(vertical = 20.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
+                        onClick = {},
+                        shape = RoundedCornerShape(9.dp),
+                        contentPadding = PaddingValues(horizontal = 80.dp, vertical = 13.dp)
+                    ) {
+
+                        Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                        Icon(
+                            imageVector = Icons.Rounded.ViewInAr,
+                            contentDescription = "Voir en RA",
+                            tint = Color.White,
+                            modifier = Modifier.padding(start = 20.dp)
+                        )
+                    }
+                }
+
+            }
+
             Text(
                 text = "Ingrédients", style =
                 TextStyle(
@@ -85,79 +104,53 @@ fun DetailsPlats(
                     fontWeight = FontWeight.Bold
                 ),
                 modifier = Modifier
-                    .padding(10.dp)
+                    .padding(start = 20.dp)
+                    .padding(vertical = 20.dp)
             )
-
-            for (ingredient in dish.ingredients) {
-                LazyColumn(modifier = Modifier) {
-                    items(items = dish.ingredients) {
-                        Divider(
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .height(0.2.dp)
-                        )
-
+            Card(
+                modifier = Modifier
+                    .padding(horizontal = 25.dp, vertical = 5.dp)
+                    .padding(bottom = 80.dp),
+                elevation = 2.dp,
+                shape = RoundedCornerShape(corner = CornerSize(8.dp)),
+                content = {
+                    Column(modifier = Modifier) {
+                        for (name in dish.ingredients) {
+                            Text(
+                                text = name,
+                                style = TextStyle(fontSize = 16.sp),
+                                modifier = Modifier
+                                    .padding(17.dp)
+                                    .padding(start = 10.dp)
+                            )
+                            Divider(
+                                modifier = Modifier
+                                    .height(0.2.dp)
+                            )
+                        }
                     }
                 }
-                Text(
-                    text = ingredient,
-                    style = TextStyle(fontSize = 15.sp),
-                    modifier = Modifier
-                        .padding(7.dp)
-                )
-            }
-
-            Column(modifier = Modifier
-                .padding(10.dp)
-                .align(Alignment.CenterHorizontally)
-
-
-            ) {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
-                    onClick = {},
-                    shape = RoundedCornerShape(20.dp)
-                ) {
-                    //icon cube 3D pas trouver
-                    //                    Icon(
-                    //                        imageVector = Icons.Filled.Search,
-                    //                        contentDescription = "Voir en RA",
-                    //                        Modifier.padding(end = 8.dp)
-                    //                    )
-                    if (dish.url_model_android != "") {
-                        Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
-                    }
-                }
-
-            }
-
-
+            )
         }
     }
-
-
-
 }
 
 @Composable
 fun ImageCard(
-    painter: Painter,
+    painter: String,
     contentDescription: String,
     title: String,
-    modifier: Modifier = Modifier
+    price: Float,
 ) {
-    Card(modifier = modifier
-        .fillMaxWidth()
-        .padding(4.dp),
-        shape = RoundedCornerShape(25.dp),
-        elevation = 5.dp
-    ) {
-        Box(modifier = Modifier.height(250.dp)) {
-            Image(
-                painter = painter,
+        Box(modifier = Modifier.height(250.dp).fillMaxWidth()) {
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(painter)
+                    .crossfade(true)
+                    .build(),
                 contentDescription = contentDescription,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(390.dp)
+                modifier = Modifier.size(500.dp)
             )
             Box(modifier = Modifier
                 .fillMaxSize()
@@ -168,7 +161,7 @@ fun ImageCard(
                             Color.Transparent,
                             Color.Black
                         ),
-                        startY = 300f
+                        startY = 400f
                     )
                 )
 
@@ -179,13 +172,29 @@ fun ImageCard(
                 .padding(19.dp),
                 contentAlignment = Alignment.BottomStart)
             {
-                Text(title,
-                    style = TextStyle(color = Color.White,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    ))
+                Row {
+                    Text(title,
+                        style = TextStyle(color = Color.White,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        ))
+                }
+            }
+            Box(modifier = Modifier
+                .fillMaxSize()
+                .padding(19.dp),
+                contentAlignment = Alignment.BottomEnd)
+            {
+                Row {
+                    Text("${price}0 €",
+                        style = TextStyle(color = Color.White,
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.End
+                        ))
+                }
             }
         }
-    }
+
 }
