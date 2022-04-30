@@ -65,7 +65,7 @@ fun DetailsPlats(
             ) {
 
             val painter = dish.url_logo
-            val description = "Bo bun boeuf avec nems"
+            val description = dish.name
             val title = dish.name
             ImageCard(
                 painter = painter,
@@ -140,7 +140,7 @@ fun ImageCard(
     painter: String,
     contentDescription: String,
     title: String,
-    price: String,
+    price: Float,
 ) {
         Box(modifier = Modifier.height(250.dp).fillMaxWidth()) {
             AsyncImage(
@@ -187,7 +187,7 @@ fun ImageCard(
                 contentAlignment = Alignment.BottomEnd)
             {
                 Row {
-                    Text(price,
+                    Text("${price}0 €",
                         style = TextStyle(color = Color.White,
                             fontSize = 18.sp,
                             fontWeight = FontWeight.Bold,
