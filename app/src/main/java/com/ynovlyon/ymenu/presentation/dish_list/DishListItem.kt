@@ -12,29 +12,31 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.ynovlyon.ymenu.data.Dish
+import com.google.gson.Gson
 import com.ynovlyon.ymenu.data.model.DishModel
 
-
 @Composable
-fun DishListItem(dish: DishModel, navController: NavController) {
+fun DishListItem(dish: DishModel, navController: NavController, onClick: () -> Unit) {
+    fun navigateToDish(dish: DishModel) {
+        val dishJson = Gson().toJson(dish)
+        navController.navigate("dish/$dishJson")
+    }
+
     Card(
         modifier = Modifier
             .padding(horizontal = 5.dp, vertical = 5.dp)
             .fillMaxWidth()
             .clickable(
                 onClick = {
-                    navController.navigate("details") {
-                        popUpTo("menu") { inclusive = true }
-                    }
+                    onClick()
+                    // navigateToDish(dish = dish)
                 }
-                ),
+            ),
         elevation = 2.dp,
 //        backgroundColor = Color.White,
         shape = RoundedCornerShape(corner = CornerSize(16.dp)),

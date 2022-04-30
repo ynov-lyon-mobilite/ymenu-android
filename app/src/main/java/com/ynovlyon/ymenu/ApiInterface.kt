@@ -25,6 +25,6 @@ interface ApiInterface {
     fun getRestaurantById(@Path("id") id : String): Call<RestaurantModel>
 
     @GET("dishes/restaurant/{id}")
-    suspend fun getDishesListById(@Path("id") id: String): List<DishModel>
+    fun getDishesListById(@Path("id") id : String): Call<List<DishModel>>
 }
 

@@ -13,16 +13,17 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.common.InputImage
 import com.ynovlyon.ymenu.ApiInterface
+import com.ynovlyon.ymenu.data.model.DishModel
 import com.ynovlyon.ymenu.data.model.RestaurantModel
+import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class QrCodeAnalyzer(
     private val context: Context,
     private val qrCodeBoxView: QrCodeBoxView,
-    private val navController: NavController
+    val navController: NavController
 ) : ImageAnalysis.Analyzer {
 
     /**
@@ -67,8 +68,7 @@ class QrCodeAnalyzer(
                                 val restaurantData: List<String> =
                                     qrCodeResult.split(',').map { it -> it.trim() }
                                 val restaurantId: String? = restaurantData[0]
-                                val restaurantName: String? = restaurantData[1]
-                                if (restaurantId != null && restaurantName != null) {
+                                if (restaurantId != null) {
                                     executeCall(restaurantId)
                                 }
                             }
@@ -92,15 +92,16 @@ class QrCodeAnalyzer(
         image.close()
     }
 
-    private fun executeCall(id: String) {
-        val apiInterface = ApiInterface.create().getRestaurantById(id)
+    private fun executeCall(idRestaurant: String) {
+        val apiInterface = ApiInterface.create().getRestaurantById(idRestaurant)
         apiInterface.enqueue(object : Callback<RestaurantModel> {
             override fun onResponse(
                 call: Call<RestaurantModel>,
                 response: Response<RestaurantModel>
             ) {
                 if (response.body() != null) {
-                    switchToListing(response.body()!!._id.toString())
+                    Log.d("hello", response.body().toString())
+                        getDishList(response.body()!!)
                 }
             }
 
@@ -109,9 +110,35 @@ class QrCodeAnalyzer(
         })
     }
 
-    private fun switchToListing(idRestaurant: String) {
-        navController.navigate("menu/$idRestaurant") {
-            popUpTo("qrCode") { inclusive = true }
-        }
+     fun getDishList(restaurant: RestaurantModel) {
+        val apiInterface = ApiInterface.create().getDishesListById(restaurant._id!!)
+        apiInterface.enqueue(object : Callback<List<DishModel>> {
+            override fun onResponse(
+                call: Call<List<DishModel>>,
+                response: Response<List<DishModel>>
+            ) {
+                if (response.body() != null) {
+                    pushDishes(response.body()!!)
+                    Log.d("hello", response.body().toString())
+                    // _dishList.clear()
+                    // _dishList.addAll(response.body()!!)
+                    switchToListing(restaurant)
+                }
+            }
+
+            override fun onFailure(call: Call<List<DishModel>>, t: Throwable)
+            {
+                Log.e("error", t.toString())
+            }
+        })
+    }
+
+    fun pushDishes(dishes: List<DishModel>) {
+        navController.currentBackStackEntry?.savedStateHandle?.set("dishes", dishes)
+    }
+
+    fun switchToListing(restaurant: RestaurantModel) {
+        navController.currentBackStackEntry?.savedStateHandle?.set("restaurant", restaurant)
+        navController.navigate(BottomNavItems.Menu.route)
     }
 }

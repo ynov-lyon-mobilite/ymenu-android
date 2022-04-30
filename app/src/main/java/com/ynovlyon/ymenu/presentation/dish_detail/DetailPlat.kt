@@ -1,13 +1,5 @@
 package com.ynovlyon.ymenu
 
-import android.graphics.Paint
-import android.annotation.SuppressLint
-import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -17,46 +9,32 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.rememberPagerState
 import com.ynovlyon.ymenu.ui.theme.*
-import kotlinx.coroutines.launch
 import androidx.compose.runtime.Composable
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.ynovlyon.ymenu.presentation.theme.YMenuTheme
-import java.util.concurrent.Executor
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import com.ynovlyon.ymenu.presentation.theme.fonts
-import androidx.compose.runtime.*
 import androidx.navigation.NavController
+import coil.compose.rememberAsyncImagePainter
+import com.ynovlyon.ymenu.data.model.DishModel
 
-@Preview(showBackground = true)
 @Composable
-fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de riz", "Nem", "salade", "carotte"), navController: NavController) {
+fun DetailsPlats(
+    navController: NavController,
+    dish: DishModel
+) {
+
+
     Scaffold(
         topBar = {
             Row {
@@ -66,7 +44,7 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                     modifier = Modifier
                         .padding(16.dp)
                         .clickable {
-                            navController.navigate("menu")
+                            navController.popBackStack()
                         }
                 )
             }
@@ -92,10 +70,9 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
 
             ) {
 
-
-            val painter = painterResource(id = R.drawable.boeuf)
+            val painter = rememberAsyncImagePainter(dish.url_logo)
             val description = "Bo bun boeuf avec nems"
-            val title = "Bo bun boeuf avec nems                13.90€"
+            val title = dish.name
             ImageCard(
                 painter = painter,
                 contentDescription = description,
@@ -111,9 +88,9 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                     .padding(10.dp)
             )
 
-            for (name in names) {
+            for (ingredient in dish.ingredients) {
                 LazyColumn(modifier = Modifier) {
-                    items(items = names) {
+                    items(items = dish.ingredients) {
                         Divider(
                             modifier = Modifier
                                 .fillMaxHeight()
@@ -123,7 +100,7 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                     }
                 }
                 Text(
-                    text = name,
+                    text = ingredient,
                     style = TextStyle(fontSize = 15.sp),
                     modifier = Modifier
                         .padding(7.dp)
@@ -147,7 +124,9 @@ fun DetailsPlats(names: List<String> = listOf("Emince de boeuf", "Nouilles de ri
                     //                        contentDescription = "Voir en RA",
                     //                        Modifier.padding(end = 8.dp)
                     //                    )
-                    Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                    if (dish.url_model_android != "") {
+                        Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                    }
                 }
 
             }
