@@ -5,15 +5,17 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RestaurantModel(
-    val _id: String? = null,
-    val address: String? = null,
-    val zipCode: String? = null,
-    val city: String? = null,
-    val phone: Int? = null,
-    val name: String? = null,
-    val url_logo: String? = null,
-    val mail: String? = null,
-    val user_id: String? = null,
-    val createdAt: String? = null,
-    val updatedAt: String? = null,
+    val _id: String?,
+    val address: String?,
+    val zipCode: String?,
+    val city: String?,
+    val phone: Int?,
+    val name: String?,
+    val url_logo: String?,
+    val mail: String?,
+    val speciality: String?,
+    val user_id: String?,
+    val description: String?,
+    val createdAt: String?,
+    val updatedAt: String?,
 ) : Parcelable

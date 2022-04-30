@@ -19,11 +19,11 @@ import androidx.navigation.compose.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.ynovlyon.ymenu.camera.Camera
-import com.ynovlyon.ymenu.connexion.LoginPage
 import com.ynovlyon.ymenu.data.model.DishModel
 import com.ynovlyon.ymenu.data.model.RestaurantModel
 import com.ynovlyon.ymenu.presentation.dish_list.DishList
 import com.ynovlyon.ymenu.presentation.navbar.BottomNavItems
+import com.ynovlyon.ymenu.presentation.restaurant_detail.DetailRestaurant
 
 @ExperimentalPagerApi
 @ExperimentalPermissionsApi
@@ -80,6 +80,15 @@ fun NavigationHost(
             val dish = navController.previousBackStackEntry?.savedStateHandle?.get<DishModel>("dish")
             if (dish != null) {
                 DetailsPlats(navController = navController, dish = dish)
+            }
+        }
+
+        composable(
+            "restaurantDetail"
+        ) {
+            val restaurant = navController.previousBackStackEntry?.savedStateHandle?.get<RestaurantModel>("restaurant")
+            if (restaurant != null) {
+                DetailRestaurant(navController = navController, restaurant = restaurant)
             }
         }
     }

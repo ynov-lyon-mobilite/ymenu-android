@@ -35,6 +35,7 @@ fun DetailsPlats(
     dish: DishModel
 ) {
     Scaffold(
+
         topBar = {
             Row {
                 Icon(
@@ -47,7 +48,7 @@ fun DetailsPlats(
                         }
                 )
                 Text(
-                    modifier = Modifier.padding(top = 13.dp),
+                    modifier = Modifier.padding(top = 14.dp),
                     text = "Menu", style =
                     TextStyle(
                         fontSize = 20.sp,
