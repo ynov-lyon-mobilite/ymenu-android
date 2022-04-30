@@ -1,6 +1,7 @@
 package com.ynovlyon.ymenu
 
-import com.ynovlyon.ymenu.restaurant.RestaurantModel
+import com.ynovlyon.ymenu.data.model.DishModel
+import com.ynovlyon.ymenu.data.model.RestaurantModel
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -8,8 +9,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiInterface {
-    companion object{
-         var BASE_URL = "https://ymenu.herokuapp.com/api/"
+    companion object {
+        var BASE_URL = "https://ymenu.herokuapp.com/api/"
 
         fun create(): ApiInterface {
             val retrofit = Retrofit.Builder()
@@ -22,5 +23,8 @@ interface ApiInterface {
 
     @GET("restaurants/{id}")
     fun getRestaurantById(@Path("id") id : String): Call<RestaurantModel>
+
+    @GET("dishes/restaurant/{id}")
+    fun getDishesListById(@Path("id") id : String): Call<List<DishModel>>
 }
 

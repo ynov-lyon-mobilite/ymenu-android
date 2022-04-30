@@ -39,11 +39,7 @@ fun BottomNavigationBar(
                         content = { Icon(painterResource(id = navItem.icon) , contentDescription = null) },
                         onClick = {
                             navController.navigate(navItem.route) {
-                                launchSingleTop = true
-                                restoreState = true
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
+                                popUpTo(navController.graph.findStartDestination().id)
                             }
                         },
 
