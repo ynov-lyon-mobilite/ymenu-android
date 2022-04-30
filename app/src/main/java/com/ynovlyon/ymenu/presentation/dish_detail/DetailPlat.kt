@@ -73,24 +73,28 @@ fun DetailsPlats(
                 title = title,
                 price = dish.price
             )
-            Box(
-                modifier = Modifier.fillMaxSize().padding(vertical = 20.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Button(
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
-                    onClick = {},
-                    shape = RoundedCornerShape(9.dp),
-                    contentPadding = PaddingValues(horizontal = 80.dp, vertical = 13.dp)
+            if (dish.url_model_android != null) {
+                Box(
+                    modifier = Modifier.fillMaxSize().padding(vertical = 20.dp),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
-                    Icon(
-                        imageVector = Icons.Rounded.ViewInAr,
-                        contentDescription = "Voir en RA",
-                        tint = Color.White,
-                        modifier = Modifier.padding(start = 20.dp)
-                    )
+                    Button(
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
+                        onClick = {},
+                        shape = RoundedCornerShape(9.dp),
+                        contentPadding = PaddingValues(horizontal = 80.dp, vertical = 13.dp)
+                    ) {
+
+                        Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                        Icon(
+                            imageVector = Icons.Rounded.ViewInAr,
+                            contentDescription = "Voir en RA",
+                            tint = Color.White,
+                            modifier = Modifier.padding(start = 20.dp)
+                        )
+                    }
                 }
+
             }
 
             Text(
