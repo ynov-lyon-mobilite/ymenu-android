@@ -49,7 +49,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
     )
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(all = 15.dp),
         scaffoldState = scaffoldState
     ) {
         Surface(
@@ -82,7 +82,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                                 painter = painterResource(id = onBoardItem[page].image),
                                 contentDescription = "OnBoardImage",
                                 modifier = Modifier
-                                    .size(250.dp)
+                                    .size(210.dp)
                             )
 
                             Text(
@@ -105,7 +105,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                             )
 
                             if (pagerState.currentPage != 2) {
-                                OutlinedButton(
+                                Button(
                                     onClick = {
                                         onBoardViewModel.setCurrentPage(pagerState.currentPage + 1)
                                     },
@@ -118,6 +118,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                                     Text(
                                         text = "Suivant",
                                         fontFamily = fonts,
+                                        fontSize = 17.sp,
                                         color = Color.White,
                                         modifier = Modifier
                                             .padding(
@@ -127,7 +128,8 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                                     )
                                 }
                             } else {
-                                OutlinedButton(
+                                Button(
+                                    modifier = Modifier.padding(bottom = 10.dp),
                                     onClick = onCompleted,
                                     colors = ButtonDefaults.buttonColors(
                                         backgroundColor = Orange200,
@@ -138,6 +140,7 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
                                     Text(
                                         text = "C'est parti !",
                                         fontFamily = fonts,
+                                        fontSize = 17.sp,
                                         modifier = Modifier
                                             .padding(
                                                 vertical = 8.dp,
