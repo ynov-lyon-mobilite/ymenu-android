@@ -12,4 +12,5 @@
     <string name="title_activity_menu">Menu</string>
     <string name="title_activity_qr_code">QrCode</string>
     <string name="title_activity_account">Account</string>
+    <string name="todo">TODO</string>
 </resources>

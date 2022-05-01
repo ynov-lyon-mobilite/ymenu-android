@@ -124,7 +124,7 @@ fun DetailRestaurant(restaurant: RestaurantModel, navController: NavController){
                         verticalArrangement = Arrangement.Top,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .fillMaxHeight(0.80f)
+                            .fillMaxHeight(0.9f)
 
                     )
                     {
@@ -184,6 +184,14 @@ fun DetailRestaurant(restaurant: RestaurantModel, navController: NavController){
                 )
                 Text("${restaurant.description}",
                     fontSize = 16.sp,)
+                Spacer(modifier = Modifier.padding(5.dp))
+                Text(
+                    "Adresse",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text("${restaurant.address} ${restaurant.zipcode} ${restaurant.city}",
+                    fontSize = 16.sp,)
             }
 
             Spacer(modifier = Modifier.padding(20.dp))
@@ -196,7 +204,7 @@ fun DetailRestaurant(restaurant: RestaurantModel, navController: NavController){
                         .padding(bottom = 100.dp)
             ) {
 
-                Text(text = "Découvrir la carte", fontSize = 18.sp, color = Color.White)
+                Text(text = "Découvrir la carte", fontSize = 16.sp, color = Color.White)
                 Icon(
                     imageVector = Icons.Rounded.RestaurantMenu,
                     contentDescription = "Découvrir la carte",

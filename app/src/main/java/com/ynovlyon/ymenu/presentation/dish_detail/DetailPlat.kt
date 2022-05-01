@@ -86,7 +86,7 @@ fun DetailsPlats(
                         contentPadding = PaddingValues(horizontal = 80.dp, vertical = 13.dp)
                     ) {
 
-                        Text(text = "Voir en RA", fontSize = 18.sp, color = Color.White)
+                        Text(text = "Voir en RA", fontSize = 16.sp, color = Color.White)
                         Icon(
                             imageVector = Icons.Rounded.ViewInAr,
                             contentDescription = "Voir en RA",
