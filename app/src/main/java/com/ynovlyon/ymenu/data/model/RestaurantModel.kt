@@ -7,7 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class RestaurantModel(
     val _id: String?,
     val address: String?,
-    val zipCode: String?,
+    val zipcode: String?,
     val city: String?,
     val phone: Int?,
     val name: String?,
