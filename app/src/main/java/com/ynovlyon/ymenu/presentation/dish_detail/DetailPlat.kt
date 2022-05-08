@@ -42,7 +42,7 @@ fun DetailsPlats(
     var showAr by remember { mutableStateOf(false) }
 
     if (showAr) {
-        ShowAr()
+        ShowAr(dish = dish)
     }
 
     Scaffold(
@@ -152,7 +152,7 @@ fun DetailsPlats(
 }
 
 @Composable
-fun ShowAr() {
+fun ShowAr(dish: DishModel) {
     val context = LocalContext.current
 
     val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
@@ -160,9 +160,11 @@ fun ShowAr() {
         Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
             .appendQueryParameter(
                 "file",
-                "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf"
+                dish.url_model_android
             )
-            .appendQueryParameter("mode", "3d_only")
+            .appendQueryParameter("mode", "3d_preferred")
+            .appendQueryParameter("title", dish.name)
+            .appendQueryParameter("resizeable", "false")
             .build()
     sceneViewerIntent.setData(intentUri)
     sceneViewerIntent.setPackage("com.google.ar.core")
