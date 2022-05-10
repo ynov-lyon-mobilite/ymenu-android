@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ViewInAr
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -76,6 +79,8 @@ fun DishListItem(dish: DishModel, onClick: () -> Unit) {
 
 @Composable
 fun DishImage(dish: DishModel) {
+    Box() {
+
         Image(
             painter = rememberAsyncImagePainter(dish.url_logo),
             contentDescription = null,
@@ -91,4 +96,16 @@ fun DishImage(dish: DishModel) {
                 .clip(RoundedCornerShape(corner = CornerSize(13.dp)))
 
         )
+        if (dish.url_model_android != null) {
+            Card(modifier = Modifier.padding(15.dp), shape = RoundedCornerShape(size = 100.dp)) {
+                Icon(
+                    imageVector = Icons.Rounded.ViewInAr,
+                    contentDescription = "Réalité augmentée",
+                    tint = Color.LightGray,
+                    modifier = Modifier.size(25.dp).padding(5.dp)
+                )
+            }
+        }
+
+    }
 }
