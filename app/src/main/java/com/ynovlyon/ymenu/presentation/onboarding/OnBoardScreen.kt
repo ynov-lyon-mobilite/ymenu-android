@@ -49,11 +49,9 @@ fun OnBoardScreen(onCompleted: () -> Unit) {
     )
 
     Scaffold(
-        modifier = Modifier.fillMaxSize().padding(all = 15.dp),
         scaffoldState = scaffoldState
     ) {
         Surface(
-            modifier = Modifier.fillMaxSize()
         ) {
             scope.launch {
                 pagerState.animateScrollToPage(
