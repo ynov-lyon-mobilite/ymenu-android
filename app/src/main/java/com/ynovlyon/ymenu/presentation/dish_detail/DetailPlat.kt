@@ -162,7 +162,7 @@ fun ShowAr(dish: DishModel) {
                 "file",
                 dish.url_model_android
             )
-            .appendQueryParameter("mode", "3d_preferred")
+            .appendQueryParameter("mode", "ar_preferred")
             .appendQueryParameter("title", dish.name)
             .appendQueryParameter("resizeable", "false")
             .build()
