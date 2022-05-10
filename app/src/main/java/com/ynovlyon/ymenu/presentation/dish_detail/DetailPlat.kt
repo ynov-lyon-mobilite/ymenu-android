@@ -1,5 +1,6 @@
 package com.ynovlyon.ymenu
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ynovlyon.ymenu.ui.theme.*
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.clickable
 import androidx.compose.material.Text
 import androidx.compose.material.icons.filled.ArrowBack
@@ -29,11 +29,22 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.runtime.*
+import androidx.core.content.ContextCompat.startActivity
+
 @Composable
 fun DetailsPlats(
     navController: NavController,
     dish: DishModel
 ) {
+    var showAr by remember { mutableStateOf(false) }
+
+    if (showAr) {
+        ShowAr(dish = dish)
+    }
+
     Scaffold(
 
         topBar = {
@@ -76,12 +87,16 @@ fun DetailsPlats(
             )
             if (dish.url_model_android != null) {
                 Box(
-                    modifier = Modifier.fillMaxSize().padding(vertical = 20.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 20.dp),
                     contentAlignment = Alignment.Center
                 ) {
                     Button(
                         colors = ButtonDefaults.buttonColors(backgroundColor = Orange200),
-                        onClick = {},
+                        onClick = {
+                            showAr = true
+                        },
                         shape = RoundedCornerShape(9.dp),
                         contentPadding = PaddingValues(horizontal = 80.dp, vertical = 13.dp)
                     ) {
@@ -137,13 +152,36 @@ fun DetailsPlats(
 }
 
 @Composable
+fun ShowAr(dish: DishModel) {
+    val context = LocalContext.current
+
+    val sceneViewerIntent = Intent(Intent.ACTION_VIEW)
+    val intentUri =
+        Uri.parse("https://arvr.google.com/scene-viewer/1.0").buildUpon()
+            .appendQueryParameter(
+                "file",
+                dish.url_model_android
+            )
+            .appendQueryParameter("mode", "ar_preferred")
+            .appendQueryParameter("title", dish.name)
+            .appendQueryParameter("resizeable", "false")
+            .build()
+    sceneViewerIntent.setData(intentUri)
+    sceneViewerIntent.setPackage("com.google.ar.core")
+
+    context.startActivity(sceneViewerIntent)
+}
+
+@Composable
 fun ImageCard(
     painter: String,
     contentDescription: String,
     title: String,
     price: Float,
 ) {
-        Box(modifier = Modifier.height(250.dp).fillMaxWidth()) {
+        Box(modifier = Modifier
+            .height(250.dp)
+            .fillMaxWidth()) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(painter)
